@@ -163,7 +163,8 @@ const PROOF_IMAGES = {
     "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1"
   ],
   luxurynaples: [
-    "https://www.dropbox.com/scl/fi/q4f6sslafxx1xuhavw0pq/IMG_0968-2.jpg?rlkey=lsnoetydeoaqqiuuxzpmr1hph&st=rxdvh4it&raw=1"
+    "https://www.dropbox.com/scl/fi/q4f6sslafxx1xuhavw0pq/IMG_0968-2.jpg?rlkey=lsnoetydeoaqqiuuxzpmr1hph&st=rxdvh4it&raw=1",
+    "https://www.dropbox.com/scl/fi/ijgmy11fk3aa3cxo91j6n/HeroImage-10.png?rlkey=kdedny1ewq3o1i355u5t3uu70&st=tcoiw8mn&raw=1"
   ],
   mojo: [
     "https://www.dropbox.com/scl/fi/qpm5hneh8n3rh52mk6wfo/mojoluxury.png?rlkey=phqx5t6memqzcefqtm72cgmp6&st=v06wrssy&raw=1",
