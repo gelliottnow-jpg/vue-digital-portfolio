@@ -293,35 +293,33 @@ function CaseSection({ id, title, kpi }) {
                       />
                     </div>
                   ) : id === 'autohaus' ? (
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 items-start">
+              <div className="space-y-4">
                 <div>
                   <iframe 
                     src={PROOF_IMAGES[id][0].replace('YOUTUBE:', '')}
                     width="100%" 
-                    height="315"
+                    height="280"
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
-                    style={{border: 'none', minWidth: '280px'}}
+                    style={{border: 'none'}}
                   />
                 </div>
-                <div>
-                  <iframe 
-                    src={PROOF_IMAGES[id][1].replace('INSTAGRAM:', '')}
-                    width="100%" 
-                    height="400"
-                    frameBorder="0" 
-                    scrolling="no" 
-                    allow="encrypted-media"
-                    style={{border: 'none', minWidth: '280px'}}
-                  />
-                </div>
-              </div>
-              <div className="max-w-md mx-auto">
                 <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
                   <img src={PROOF_IMAGES[id][2]} alt="Analytics Screenshot" className="w-full h-auto" />
                 </div>
+              </div>
+              <div>
+                <iframe 
+                  src={PROOF_IMAGES[id][1].replace('INSTAGRAM:', '')}
+                  width="100%" 
+                  height="580"
+                  frameBorder="0" 
+                  scrolling="no" 
+                  allow="encrypted-media"
+                  style={{border: 'none'}}
+                />
               </div>
             </div>
           ) : (
