@@ -152,9 +152,10 @@ const PROOF_IMAGES = {
     "TIKTOK:https://www.tiktok.com/embed/7285951248086437163", 
   ],
   expressions: [
-    "https://www.dropbox.com/scl/fi/3bxbwgkgw1fb86mrf9rk0/Screenshot-2025-06-02-at-9.55.15-PM.png?rlkey=ywac3qcw5tq6eknxk0geiijvd&st=glhbxwja&raw=1",
-    "https://www.dropbox.com/scl/fi/93tg9bsin36x0k2mf8t05/Screenshot-2025-05-15-at-9.51.31-PM.png?rlkey=1m22idgzabzxc5ls83o0mxe1t&st=kin2856d&raw=1"
-  ],
+  "https://www.dropbox.com/scl/fi/3bxbwgkgw1fb86mrf9rk0/Screenshot-2025-06-02-at-9.55.15-PM.png?rlkey=ywac3qcw5tq6eknxk0geiijvd&st=glhbxwja&raw=1",
+  "https://www.dropbox.com/scl/fi/93tg9bsin36x0k2mf8t05/Screenshot-2025-05-15-at-9.51.31-PM.png?rlkey=1m22idgzabzxc5ls83o0mxe1t&st=kin2856d&raw=1",
+  "VIMEO:https://player.vimeo.com/video/1113539417?badge=0&autopause=0&player_id=0&app_id=58479"
+],
   autohaus: [
     "https://www.dropbox.com/scl/fi/7ir7wqhd6gt80x7nkpgo4/HeroImage-7.png?rlkey=hev91yys2sbg4fnbylhg1ysu0&st=bozzldh8&raw=1",
     "https://www.dropbox.com/scl/fi/7vnd71102t5c8ealshem7/IMG_4743.jpg?rlkey=y6k6zkx76fah3gool12k79sde&st=msj2cgqh&raw=1"
@@ -273,10 +274,44 @@ function CaseSection({ id, title, kpi }) {
             </ul>
             <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">Discuss a similar outcome →</a>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {PROOF_IMAGES[id]?.map((content, index) => (
-  <div key={index}>
-    {content.startsWith('TIKTOK:') ? (
+          {id === 'expressions' ? (
+  <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-4">
+      <div>
+        {PROOF_IMAGES[id][0].startsWith('VIMEO:') ? (
+          <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+            <iframe src={PROOF_IMAGES[id][0].replace('VIMEO:', '')} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="Client Testimonial" />
+          </div>
+        ) : (
+          <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][0], '_blank')}>
+            <img src={PROOF_IMAGES[id][0]} alt="Proof 1" className="w-full h-auto" />
+          </div>
+        )}
+      </div>
+      <div>
+        {PROOF_IMAGES[id][2] && PROOF_IMAGES[id][2].startsWith('VIMEO:') ? (
+          <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+            <iframe src={PROOF_IMAGES[id][2].replace('VIMEO:', '')} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="Client Testimonial" />
+          </div>
+        ) : PROOF_IMAGES[id][2] ? (
+          <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][2], '_blank')}>
+            <img src={PROOF_IMAGES[id][2]} alt="Proof 3" className="w-full h-auto" />
+          </div>
+        ) : null}
+      </div>
+    </div>
+    <div>
+      <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][1], '_blank')}>
+        <img src={PROOF_IMAGES[id][1]} alt="Proof 2" className="w-full h-auto" />
+      </div>
+    </div>
+  </div>
+) : (
+  <div className="grid md:grid-cols-2 gap-4">
+    {PROOF_IMAGES[id]?.map((content, index) => (
+      <div key={index}>
+        {content.startsWith('TIKTOK:') ? (
+          // ... keep all your existing video logic here for other cases
       <iframe 
         src={content.replace('TIKTOK:', '')}
         width="325" 
@@ -306,6 +341,17 @@ function CaseSection({ id, title, kpi }) {
         allowFullScreen
         style={{border: 'none'}}
       />
+    ) : content.startsWith('VIMEO:') ? (
+  <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+    <iframe 
+      src={content.replace('VIMEO:', '')}
+      frameBorder="0" 
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}}
+      title="Client Testimonial"
+    />
+  </div>
     ) : (
       <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(content, '_blank')}>
         <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
