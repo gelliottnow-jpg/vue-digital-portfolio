@@ -158,7 +158,8 @@ const PROOF_IMAGES = {
 ],
   autohaus: [
     "YOUTUBE:https://www.youtube.com/embed/rm_C00zIy8M",
-    "INSTAGRAM:https://www.instagram.com/p/DNnyiuxtCZk/embed"
+    "INSTAGRAM:https://www.instagram.com/p/DNnyiuxtCZk/embed",
+    "https://www.dropbox.com/scl/fi/7vnd71102t5c8ealshem7/IMG_4743.jpg?rlkey=y6k6zkx76fah3gool12k79sde&st=1wadu4re&raw=1"
   ],
   ssb: [
     "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1"
@@ -292,7 +293,7 @@ function CaseSection({ id, title, kpi }) {
                       />
                     </div>
                   ) : (
-                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][0], '_blank')}>
+                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
                       <img src={PROOF_IMAGES[id][0]} alt="Proof 1" className="w-full h-auto" />
                     </div>
                   )}
@@ -310,14 +311,14 @@ function CaseSection({ id, title, kpi }) {
                       />
                     </div>
                   ) : PROOF_IMAGES[id][2] ? (
-                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][2], '_blank')}>
+                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
                       <img src={PROOF_IMAGES[id][2]} alt="Proof 3" className="w-full h-auto" />
                     </div>
                   ) : null}
                 </div>
               </div>
               <div>
-                <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][1], '_blank')}>
+                <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
                   <img src={PROOF_IMAGES[id][1]} alt="Proof 2" className="w-full h-auto" />
                 </div>
               </div>
@@ -368,7 +369,7 @@ function CaseSection({ id, title, kpi }) {
                       />
                     </div>
                   ) : (
-                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(content, '_blank')}>
+                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
                       <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
                     </div>
                   )}
