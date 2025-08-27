@@ -216,7 +216,7 @@ function Hero() {
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
         <div>
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">Results You Can Measure. Stories People Remember.</h1>
-          <p className="mt-5 text-zinc-800 text-lg md:text-xl md:whitespace-nowrap font-medium">A digital growth growth & content studio by <span className="font-semibold text-zinc-900">Gilles Elliott</span>.</p>
+          <p className="mt-5 text-zinc-800 text-lg md:text-xl md:whitespace-nowrap font-medium">A digital marketing & content studio by <span className="font-semibold text-zinc-900">Gilles Elliott</span>.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a href="#contact" className="inline-flex h-11 items-center rounded-full bg-zinc-900 px-6 text-white hover:bg-zinc-800">Work with Gilles</a>
             <a href="#work" className="inline-flex h-11 items-center rounded-full border border-zinc-300 px-6 hover:bg-white">See the Work</a>
