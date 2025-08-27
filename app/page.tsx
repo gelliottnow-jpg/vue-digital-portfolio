@@ -263,9 +263,8 @@ function CaseSection({ id, title, kpi }) {
   return (
     <section id={id} className="py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
           <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">{title}</h3>
-          <div className="inline-flex items-center rounded-full bg-zinc-900 text-white text-sm px-4 py-2">{kpi}</div>
         </div>
         <div className="mt-6">
           <div className="mb-8">
