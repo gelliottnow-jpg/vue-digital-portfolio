@@ -198,7 +198,10 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
     );
   if (isVimeo)
     return (
-      <div className="rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden" style={{ position: "relative", paddingTop: "56.25%" }}>
+      <div
+        className="rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden"
+        style={{ position: "relative", paddingTop: "56.25%" }}
+      >
         <iframe
           {...baseFrameProps}
           src={src}
@@ -212,14 +215,18 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
   if (content.startsWith("IMG:"))
     return (
       <div className="rounded-2xl overflow-hidden">
-        <img src={content.replace("IMG:", "")} alt={title} className="w-full h-auto block" loading="lazy" decoding="async" />
+        <img
+          src={content.replace("IMG:", "")}
+          alt={title}
+          className="w-full h-auto block"
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     );
 
   return null;
 }
-
-// Nav, Hero, Highlights, CaseSection, Approach, Contact, DevTests unchanged 8/27...
 
 // ---------- UI ----------
 function Nav() {
@@ -238,9 +245,16 @@ function Nav() {
         <a
           href="#"
           aria-label="Vue Digital — Home"
-          className="font-semibold tracking-tight text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
+          className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
         >
-          Vue Digital
+          {/* Replace text brand with PNG logo stored in /public/logo.png */}
+          <img
+            src="/logo.png"
+            alt="Vue Digital logo"
+            className="h-8 w-auto"
+            loading="eager"
+            decoding="async"
+          />
         </a>
 
         <nav
@@ -448,48 +462,46 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
             </a>
           </div>
 
-          {/* Expressions custom layout; generic responsive grid otherwise */}
-         {/* Custom layouts for certain cases */}
-{ id === "expressions" ? (
-  <div className="grid grid-cols-2 gap-4">
-    <div className="space-y-4">
-      <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
-      {PROOF_IMAGES[id]?.[2] ? (
-        <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
-      ) : null}
-    </div>
-    <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
-  </div>
-) : id === "autohaus" ? (
-  <div className="grid grid-cols-2 gap-4">
-    <div className="space-y-4">
-      <Embed content={PROOF_IMAGES[id]?.[0]} title="Autohaus YouTube 1" />
-      {PROOF_IMAGES[id]?.[2] ? (
-        <Embed content={PROOF_IMAGES[id][2]} title="Autohaus YouTube 2" />
-      ) : null}
-    </div>
-    <Embed content={PROOF_IMAGES[id]?.[1]} title="Autohaus Instagram Reel" tall />
-  </div>
-) : (
-  <div
-   className={`grid gap-4 ${
-  id === "aam360"
-    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-    : id === "ssb"
-    ? "grid-cols-1 sm:grid-cols-2"
-    : "md:grid-cols-2"
-}`}
-  >
-    {PROOF_IMAGES[id]?.map((content, index) => (
-      <Embed
-        key={index}
-        content={content}
-        title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
-      />
-    ))}
-  </div>
-)}
-
+          {/* Custom layouts for certain cases */}
+          {id === "expressions" ? (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
+                {PROOF_IMAGES[id]?.[2] ? (
+                  <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
+                ) : null}
+              </div>
+              <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
+            </div>
+          ) : id === "autohaus" ? (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <Embed content={PROOF_IMAGES[id]?.[0]} title="Autohaus YouTube 1" />
+                {PROOF_IMAGES[id]?.[2] ? (
+                  <Embed content={PROOF_IMAGES[id][2]} title="Autohaus YouTube 2" />
+                ) : null}
+              </div>
+              <Embed content={PROOF_IMAGES[id]?.[1]} title="Autohaus Instagram Reel" tall />
+            </div>
+          ) : (
+            <div
+              className={`grid gap-4 ${
+                id === "aam360"
+                  ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                  : id === "ssb"
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : "md:grid-cols-2"
+              }`}
+            >
+              {PROOF_IMAGES[id]?.map((content, index) => (
+                <Embed
+                  key={index}
+                  content={content}
+                  title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
