@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { href: "#contact", label: "Contact" },
 ];
 
-// Removed KA & Carvana from Highlights to avoid empty anchors.
+// Highlights (ka and carvana removed to avoid empty anchors)
 const HIGHLIGHTS = [
   {
     title: "All Around Me 360 Photo Booth",
@@ -106,7 +106,6 @@ const CASES = {
     bullets: ["Six-figure registration funnels", "Viral social media video strategy"],
     proofIdeas: ["Ad dashboards", "Registration spikes vs. content drops"],
   },
-  // (Not shown in Highlights, but kept for future)
   ka: {
     summary:
       "Month-one revenue lift via GBP optimization, website launch, and Facebook Marketplaces.",
@@ -121,7 +120,6 @@ const CASES = {
   },
 };
 
-// Proof images
 const PROOF_IMAGES: Record<string, string[]> = {
   aam360: [
     "TIKTOK:https://www.tiktok.com/embed/7308108106364456235",
@@ -136,14 +134,14 @@ const PROOF_IMAGES: Record<string, string[]> = {
   autohaus: [
     "YOUTUBE:https://www.youtube.com/embed/rm_C00zIy8M",
     "INSTAGRAM:https://www.instagram.com/p/DNnyiuxtCZk/embed",
-    "YOUTUBE:https://www.youtube.com/embed/pQnHZo_4DOg"
+    "YOUTUBE:https://www.youtube.com/embed/pQnHZo_4DOg",
   ],
   ssb: [
-  "TIKTOK:https://www.tiktok.com/embed/7288389063273352490",
-  "INSTAGRAM:https://www.instagram.com/p/DNBNLtNOEWu/embed",
-  "TIKTOK:https://www.tiktok.com/embed/7283882112086822190",
-  "IMG:https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=dhy831jv&raw=1"
-],
+    "TIKTOK:https://www.tiktok.com/embed/7288389063273352490",
+    "INSTAGRAM:https://www.instagram.com/p/DNBNLtNOEWu/embed",
+    "TIKTOK:https://www.tiktok.com/embed/7283882112086822190",
+    "IMG:https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=dhy831jv&raw=1",
+  ],
   luxurynaples: [
     "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
     "INSTAGRAM:https://www.instagram.com/p/DJrtNbIxCdt/embed",
@@ -157,7 +155,7 @@ const PROOF_IMAGES: Record<string, string[]> = {
   ],
 };
 
-// ---------- Utilities ----------
+// Utility hook
 function useScrolled(threshold = 32) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -169,9 +167,8 @@ function useScrolled(threshold = 32) {
   return scrolled;
 }
 
+// Embed
 type EmbedProps = { content?: string; title?: string; tall?: boolean };
-
-// Centralized, accessible, lazy-loading embed component
 function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) {
   if (!content) return null;
   const isTikTok = content.startsWith("TIKTOK:");
@@ -186,13 +183,9 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
     title,
   };
 
-  if (isTikTok) {
-    return <iframe {...baseFrameProps} src={src} height={578} loading="lazy" />;
-  }
-  if (isIG) {
-    return <iframe {...baseFrameProps} src={src} height={tall ? 600 : 560} scrolling="no" loading="lazy" />;
-  }
-  if (isYT) {
+  if (isTikTok) return <iframe {...baseFrameProps} src={src} height={578} loading="lazy" />;
+  if (isIG) return <iframe {...baseFrameProps} src={src} height={tall ? 600 : 560} scrolling="no" loading="lazy" />;
+  if (isYT)
     return (
       <iframe
         {...baseFrameProps}
@@ -203,13 +196,9 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
         allowFullScreen
       />
     );
-  }
-  if (isVimeo) {
+  if (isVimeo)
     return (
-      <div
-        className="rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden"
-        style={{ position: "relative", paddingTop: "56.25%" }}
-      >
+      <div className="rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden" style={{ position: "relative", paddingTop: "56.25%" }}>
         <iframe
           {...baseFrameProps}
           src={src}
@@ -220,20 +209,17 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
         />
       </div>
     );
-  }
-  if (content.startsWith("IMG:")) {
-  return (
-    <div className="rounded-2xl overflow-hidden">
-      <img
-        src={content.replace("IMG:", "")}
-        alt={title}
-        className="w-full h-auto block"
-        loading="lazy"
-        decoding="async"
-      />
-    </div>
-  );
+  if (content.startsWith("IMG:"))
+    return (
+      <div className="rounded-2xl overflow-hidden">
+        <img src={content.replace("IMG:", "")} alt={title} className="w-full h-auto block" loading="lazy" decoding="async" />
+      </div>
+    );
+
+  return null;
 }
+
+// Nav, Hero, Highlights, CaseSection, Approach, Contact, DevTests unchanged 8/27...
 
 // ---------- UI ----------
 function Nav() {
