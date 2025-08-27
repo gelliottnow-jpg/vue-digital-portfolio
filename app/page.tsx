@@ -148,7 +148,7 @@ const CASES: Record<string, { summary: string; bullets: string[]; proofIdeas: st
 // ADD THE PROOF_IMAGES OBJECT RIGHT HERE:
 const PROOF_IMAGES = {
   aam360: [
-    "https://www.dropbox.com/scl/fi/t0vrpotvuxiydez7rki64/Screenshot-2025-08-26-at-8.42.02-AM.png?rlkey=xk2q50ckyszowfdqkow5cb0vb&st=ev1y782f&raw=1",
+    "TIKTOK:https://www.tiktok.com/embed/7308108106364456235",
     "TIKTOK:https://www.tiktok.com/embed/7285951248086437163", 
   ],
   expressions: [
