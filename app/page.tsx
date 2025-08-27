@@ -149,7 +149,8 @@ const CASES = {
 const PROOF_IMAGES = {
   aam360: [
     "TIKTOK:https://www.tiktok.com/embed/7308108106364456235",
-    "TIKTOK:https://www.tiktok.com/embed/7285951248086437163", 
+    "TIKTOK:https://www.tiktok.com/embed/7285951248086437163",
+    "TIKTOK:https://www.tiktok.com/embed/7245369751973760302"
   ],
   expressions: [
   "https://www.dropbox.com/scl/fi/3bxbwgkgw1fb86mrf9rk0/Screenshot-2025-06-02-at-9.55.15-PM.png?rlkey=ywac3qcw5tq6eknxk0geiijvd&st=glhbxwja&raw=1",
@@ -324,13 +325,13 @@ function CaseSection({ id, title, kpi }) {
               </div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className={`grid gap-4 ${id === 'aam360' ? 'grid-cols-3' : 'md:grid-cols-2'}`}>
               {PROOF_IMAGES[id]?.map((content, index) => (
                 <div key={index}>
                   {content.startsWith('TIKTOK:') ? (
                     <iframe 
                       src={content.replace('TIKTOK:', '')}
-                      width="325" 
+                      width={id === 'aam360' ? "280" : "325"}
                       height="578"
                       frameBorder="0" 
                       scrolling="no" 
