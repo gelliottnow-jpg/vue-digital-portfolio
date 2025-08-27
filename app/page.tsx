@@ -136,6 +136,7 @@ const PROOF_IMAGES: Record<string, string[]> = {
   autohaus: [
     "YOUTUBE:https://www.youtube.com/embed/rm_C00zIy8M",
     "INSTAGRAM:https://www.instagram.com/p/DNnyiuxtCZk/embed",
+    "YOUTUBE:https://www.youtube.com/embed/pQnHZo_4DOg"
   ],
   ssb: [
     "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1",
@@ -452,27 +453,43 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
           </div>
 
           {/* Expressions custom layout; generic responsive grid otherwise */}
-          {id === "expressions" ? (
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
-                {PROOF_IMAGES[id]?.[2] ? (
-                  <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
-                ) : null}
-              </div>
-              <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
-            </div>
-          ) : (
-            <div
-              className={`grid gap-4 ${
-                id === "aam360" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"
-              }`}
-            >
-              {PROOF_IMAGES[id]?.map((content, index) => (
-                <Embed key={index} content={content} title={c.proofIdeas?.[index] || `Proof ${index + 1}`} />
-              ))}
-            </div>
-          )}
+         {/* Custom layouts for certain cases */}
+{ id === "expressions" ? (
+  <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-4">
+      <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
+      {PROOF_IMAGES[id]?.[2] ? (
+        <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
+      ) : null}
+    </div>
+    <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
+  </div>
+) : id === "autohaus" ? (
+  <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-4">
+      <Embed content={PROOF_IMAGES[id]?.[0]} title="Autohaus YouTube 1" />
+      {PROOF_IMAGES[id]?.[2] ? (
+        <Embed content={PROOF_IMAGES[id][2]} title="Autohaus YouTube 2" />
+      ) : null}
+    </div>
+    <Embed content={PROOF_IMAGES[id]?.[1]} title="Autohaus Instagram Reel" tall />
+  </div>
+) : (
+  <div
+    className={`grid gap-4 ${
+      id === "aam360" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"
+    }`}
+  >
+    {PROOF_IMAGES[id]?.map((content, index) => (
+      <Embed
+        key={index}
+        content={content}
+        title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
+      />
+    ))}
+  </div>
+)}
+
         </div>
       </div>
     </section>
