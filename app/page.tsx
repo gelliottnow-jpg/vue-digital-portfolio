@@ -157,8 +157,8 @@ const PROOF_IMAGES = {
   "VIMEO:https://player.vimeo.com/video/1113539417?badge=0&autopause=0&player_id=0&app_id=58479"
 ],
   autohaus: [
-    "https://www.dropbox.com/scl/fi/7ir7wqhd6gt80x7nkpgo4/HeroImage-7.png?rlkey=hev91yys2sbg4fnbylhg1ysu0&st=bozzldh8&raw=1",
-    "https://www.dropbox.com/scl/fi/7vnd71102t5c8ealshem7/IMG_4743.jpg?rlkey=y6k6zkx76fah3gool12k79sde&st=msj2cgqh&raw=1"
+    "YOUTUBE:https://www.youtube.com/embed/rm_C00zIy8M",
+    "INSTAGRAM:https://www.instagram.com/p/DNnyiuxtCZk/embed"
   ],
   ssb: [
     "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1"
