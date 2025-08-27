@@ -275,19 +275,21 @@ function CaseSection({ id, title, kpi }) {
           </div>
           <div className="grid md:grid-cols-2 gap-4">
             {PROOF_IMAGES[id]?.map((content, index) => (
-  <div key={index} className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
+  <div key={index}>
     {content.startsWith('TIKTOK:') ? (
       <iframe 
         src={content.replace('TIKTOK:', '')}
-        width="100%" 
-        height="400"
+        width="325" 
+        height="578"
         frameBorder="0" 
         scrolling="no" 
         allow="encrypted-media"
-        className="rounded-2xl"
+        style={{border: 'none'}}
       />
     ) : (
-      <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto cursor-pointer" onClick={() => window.open(content, '_blank')} />
+      <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(content, '_blank')}>
+        <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
+      </div>
     )}
   </div>
 ))}
