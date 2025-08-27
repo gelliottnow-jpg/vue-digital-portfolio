@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react";
 
 // --- Hero asset config ------------------------------------------------------
-// Put your image in your project's /public folder as hero.webp (1600x1280 ideal)
-// or use an external URL (as below).
 const HERO_SRC =
   "https://www.dropbox.com/scl/fi/5p1ea4pp5v6tlr29o8u6t/HeroImage-1.png?rlkey=wjgr214tpldjb5191iuxja29k&st=0odcecfr&raw=1";
 // ---------------------------------------------------------------------------
@@ -16,7 +14,6 @@ const NAV_LINKS = [
 ];
 
 // Removed KA & Carvana from Highlights to avoid empty anchors.
-// Section title changed below to “Work that moved the needle”.
 const HIGHLIGHTS = [
   {
     title: "All Around Me 360 Photo Booth",
@@ -109,7 +106,7 @@ const CASES = {
     bullets: ["Six-figure registration funnels", "Viral social media video strategy"],
     proofIdeas: ["Ad dashboards", "Registration spikes vs. content drops"],
   },
-  // Keeping these definitions in CASES for future use, but not shown in Highlights:
+  // (Not shown in Highlights, but kept for future)
   ka: {
     summary:
       "Month-one revenue lift via GBP optimization, website launch, and Facebook Marketplaces.",
@@ -125,7 +122,7 @@ const CASES = {
 };
 
 // Proof images
-const PROOF_IMAGES = {
+const PROOF_IMAGES: Record<string, string[]> = {
   aam360: [
     "TIKTOK:https://www.tiktok.com/embed/7308108106364456235",
     "TIKTOK:https://www.tiktok.com/embed/7285951248086437163",
@@ -168,8 +165,10 @@ function useScrolled(threshold = 32) {
   return scrolled;
 }
 
+type EmbedProps = { content?: string; title?: string; tall?: boolean };
+
 // Centralized, accessible, lazy-loading embed component
-function Embed({ content, title = "Embedded media", tall = false }) {
+function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) {
   if (!content) return null;
   const isTikTok = content.startsWith("TIKTOK:");
   const isIG = content.startsWith("INSTAGRAM:");
@@ -179,16 +178,15 @@ function Embed({ content, title = "Embedded media", tall = false }) {
 
   const baseFrameProps = {
     className: "w-full rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden",
-    style: { border: "none" },
-    loading: "lazy",
+    style: { border: "none" as const },
     title,
   };
 
   if (isTikTok) {
-    return <iframe {...baseFrameProps} src={src} height={578} />;
+    return <iframe {...baseFrameProps} src={src} height={578} loading="lazy" />;
   }
   if (isIG) {
-    return <iframe {...baseFrameProps} src={src} height={tall ? 600 : 560} scrolling="no" />;
+    return <iframe {...baseFrameProps} src={src} height={tall ? 600 : 560} scrolling="no" loading="lazy" />;
   }
   if (isYT) {
     return (
@@ -196,6 +194,7 @@ function Embed({ content, title = "Embedded media", tall = false }) {
         {...baseFrameProps}
         src={src}
         height={315}
+        loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
       />
@@ -210,6 +209,7 @@ function Embed({ content, title = "Embedded media", tall = false }) {
         <iframe
           {...baseFrameProps}
           src={src}
+          loading="lazy"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
@@ -346,7 +346,10 @@ function Hero() {
   return (
     <section id="hero" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50">
       {/* Skip link for a11y */}
-      <a href="#work" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded">
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
+      >
         Skip to Work
       </a>
 
@@ -355,9 +358,7 @@ function Hero() {
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
             Results You Can Measure. Stories People Remember.
           </h1>
-          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">
-            A digital marketing & content studio.
-          </p>
+          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href="#contact"
@@ -392,9 +393,7 @@ function Highlights() {
   return (
     <section id="work" className="py-16 md:py-24 bg-zinc-50">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">
-          Work that moved the needle
-        </h2>
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">Work that moved the needle</h2>
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {HIGHLIGHTS.map((h) => (
             <a
@@ -424,8 +423,8 @@ function Highlights() {
   );
 }
 
-function CaseSection({ id, title, kpi }) {
-  const c = CASES[id];
+function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: string }) {
+  const c = (CASES as Record<string, any>)[id];
   if (!c) return null;
 
   return (
@@ -440,7 +439,7 @@ function CaseSection({ id, title, kpi }) {
           <div className="mb-8">
             <p className="text-zinc-700 leading-relaxed">{c.summary}</p>
             <ul className="mt-4 space-y-2 text-zinc-800">
-              {c.bullets.map((b) => (
+              {c.bullets.map((b: string) => (
                 <li key={b} className="flex gap-2">
                   <span className="text-zinc-400">▹</span>
                   <span>{b}</span>
@@ -452,7 +451,7 @@ function CaseSection({ id, title, kpi }) {
             </a>
           </div>
 
-          {/* FIXED: Clean, explicit layout for Expressions; generic responsive grid otherwise */}
+          {/* Expressions custom layout; generic responsive grid otherwise */}
           {id === "expressions" ? (
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
@@ -464,13 +463,13 @@ function CaseSection({ id, title, kpi }) {
               <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
             </div>
           ) : (
-            <div className={`grid gap-4 ${id === "aam360" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"}`}>
+            <div
+              className={`grid gap-4 ${
+                id === "aam360" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"
+              }`}
+            >
               {PROOF_IMAGES[id]?.map((content, index) => (
-                <Embed
-                  key={index}
-                  content={content}
-                  title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
-                />
+                <Embed key={index} content={content} title={c.proofIdeas?.[index] || `Proof ${index + 1}`} />
               ))}
             </div>
           )}
@@ -512,17 +511,11 @@ function Contact() {
       <div className="mx-auto max-w-3xl px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900">Let's make your brand unskippable.</h2>
         <p className="mt-3 text-zinc-600">
-          Email{" "}
-          <a className="underline" href="mailto:gelliottnow@gmail.com">
-            gelliottnow@gmail.com
-          </a>{" "}
-          or send a quick brief below.
+          Email <a className="underline" href="mailto:gelliottnow@gmail.com">gelliottnow@gmail.com</a> or send a quick brief below.
         </p>
         <div className="mt-8 grid gap-3 text-left">
           <div>
-            <label className="block text-sm text-zinc-600 mb-1" htmlFor="name">
-              Name
-            </label>
+            <label className="block text-sm text-zinc-600 mb-1" htmlFor="name">Name</label>
             <input
               id="name"
               className="w-full h-12 rounded-xl border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-zinc-900"
@@ -531,9 +524,7 @@ function Contact() {
             />
           </div>
           <div>
-            <label className="block text-sm text-zinc-600 mb-1" htmlFor="email">
-              Email
-            </label>
+            <label className="block text-sm text-zinc-600 mb-1" htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -543,9 +534,7 @@ function Contact() {
             />
           </div>
           <div>
-            <label className="block text-sm text-zinc-600 mb-1" htmlFor="goals">
-              What do you want to achieve?
-            </label>
+            <label className="block text-sm text-zinc-600 mb-1" htmlFor="goals">What do you want to achieve?</label>
             <textarea
               id="goals"
               className="w-full min-h-[120px] rounded-xl border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-900"
@@ -572,7 +561,7 @@ function Contact() {
  * DevTests — lightweight runtime checks shown when URL has ?dev=1
  */
 function DevTests() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<{ name: string; pass: boolean; details?: string }[]>([]);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -581,17 +570,17 @@ function DevTests() {
     setShow(isDev);
     if (!isDev) return;
 
-    const tests = [];
+    const tests: { name: string; pass: boolean; details?: string }[] = [];
 
-    // Test 1: Hero contains "Results You Can Measure"
+    // Test 1: Hero contains headline
     const hero = document.getElementById("hero");
     const heroPass = !!hero?.textContent?.includes("Results You Can Measure");
     tests.push({ name: "Hero includes headline", pass: heroPass });
 
     // Test 2: All highlight anchors map to a case id
-    const missing = [];
+    const missing: string[] = [];
     HIGHLIGHTS.forEach((h) => {
-      if (!CASES[h.anchor]) missing.push(h.anchor);
+      if (!(CASES as Record<string, any>)[h.anchor]) missing.push(h.anchor);
     });
     tests.push({ name: "Highlights map to cases", pass: missing.length === 0, details: missing.join(", ") });
 
@@ -639,9 +628,7 @@ function DevTests() {
           </li>
         ))}
       </ul>
-      <div className="mt-2 text-xs opacity-70">
-        Append <code>?dev=1</code> to the URL to toggle this.
-      </div>
+      <div className="mt-2 text-xs opacity-70">Append <code>?dev=1</code> to the URL to toggle this.</div>
     </div>
   );
 }
