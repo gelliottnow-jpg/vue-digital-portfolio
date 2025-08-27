@@ -342,25 +342,29 @@ function CaseSection({ id, title, kpi }) {
         style={{border: 'none'}}
       />
     ) : content.startsWith('VIMEO:') ? (
-  <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-    <iframe 
-      src={content.replace('VIMEO:', '')}
-      frameBorder="0" 
-      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}}
-      title="Client Testimonial"
-    />
-  </div>
+      <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+        <iframe 
+          src={content.replace('VIMEO:', '')}
+          frameBorder="0" 
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}}
+          title="Client Testimonial"
+        />
+      </div>
     ) : (
       <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(content, '_blank')}>
         <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
       </div>
     )}
-  </div>
-))}
+      </div>
+    ))}
           </div>
-        </div>
+        )}
+      </div>
+    </section>
+  );
+}
       </div>
     </section>
   );
