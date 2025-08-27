@@ -142,7 +142,7 @@ const PROOF_IMAGES: Record<string, string[]> = {
   "TIKTOK:https://www.tiktok.com/embed/7288389063273352490",
   "INSTAGRAM:https://www.instagram.com/p/DNBNLtNOEWu/embed",
   "TIKTOK:https://www.tiktok.com/embed/7283882112086822190",
-  "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=dhy831jv&raw=1"
+  "IMG:https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=dhy831jv&raw=1"
 ],
   luxurynaples: [
     "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
@@ -221,9 +221,16 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
       </div>
     );
   }
+  if (content.startsWith("IMG:")) {
   return (
-    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
-      <img src={content} alt={title} className="w-full h-auto" loading="lazy" decoding="async" />
+    <div className="rounded-2xl overflow-hidden">
+      <img
+        src={content.replace("IMG:", "")}
+        alt={title}
+        className="w-full h-auto block"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   );
 }
