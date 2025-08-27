@@ -219,8 +219,6 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
   return null;
 }
 
-// Nav, Hero, Highlights, CaseSection, Approach, Contact, DevTests unchanged 8/27...
-
 // ---------- UI ----------
 function Nav() {
   const scrolled = useScrolled(24);
@@ -235,12 +233,22 @@ function Nav() {
       role="banner"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        {/* Brand with logo image from /public/logo.png */}
         <a
           href="#"
           aria-label="Vue Digital — Home"
-          className="font-semibold tracking-tight text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
+          className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
         >
-          Vue Digital
+          <img
+            src="/logo.png"
+            alt="Vue Digital logo"
+            width={120}
+            height={28}
+            className="h-7 w-auto object-contain"
+            loading="eager"
+            decoding="async"
+          />
+          <span className="sr-only">Vue Digital</span>
         </a>
 
         <nav
@@ -448,48 +456,46 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
             </a>
           </div>
 
-          {/* Expressions custom layout; generic responsive grid otherwise */}
-         {/* Custom layouts for certain cases */}
-{ id === "expressions" ? (
-  <div className="grid grid-cols-2 gap-4">
-    <div className="space-y-4">
-      <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
-      {PROOF_IMAGES[id]?.[2] ? (
-        <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
-      ) : null}
-    </div>
-    <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
-  </div>
-) : id === "autohaus" ? (
-  <div className="grid grid-cols-2 gap-4">
-    <div className="space-y-4">
-      <Embed content={PROOF_IMAGES[id]?.[0]} title="Autohaus YouTube 1" />
-      {PROOF_IMAGES[id]?.[2] ? (
-        <Embed content={PROOF_IMAGES[id][2]} title="Autohaus YouTube 2" />
-      ) : null}
-    </div>
-    <Embed content={PROOF_IMAGES[id]?.[1]} title="Autohaus Instagram Reel" tall />
-  </div>
-) : (
-  <div
-   className={`grid gap-4 ${
-  id === "aam360"
-    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-    : id === "ssb"
-    ? "grid-cols-1 sm:grid-cols-2"
-    : "md:grid-cols-2"
-}`}
-  >
-    {PROOF_IMAGES[id]?.map((content, index) => (
-      <Embed
-        key={index}
-        content={content}
-        title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
-      />
-    ))}
-  </div>
-)}
-
+          {/* Custom layouts for certain cases */}
+          {id === "expressions" ? (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
+                {PROOF_IMAGES[id]?.[2] ? (
+                  <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
+                ) : null}
+              </div>
+              <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
+            </div>
+          ) : id === "autohaus" ? (
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <Embed content={PROOF_IMAGES[id]?.[0]} title="Autohaus YouTube 1" />
+                {PROOF_IMAGES[id]?.[2] ? (
+                  <Embed content={PROOF_IMAGES[id][2]} title="Autohaus YouTube 2" />
+                ) : null}
+              </div>
+              <Embed content={PROOF_IMAGES[id]?.[1]} title="Autohaus Instagram Reel" tall />
+            </div>
+          ) : (
+            <div
+              className={`grid gap-4 ${
+                id === "aam360"
+                  ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                  : id === "ssb"
+                  ? "grid-cols-1 sm:grid-cols-2"
+                  : "md:grid-cols-2"
+              }`}
+            >
+              {PROOF_IMAGES[id]?.map((content, index) => (
+                <Embed
+                  key={index}
+                  content={content}
+                  title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
