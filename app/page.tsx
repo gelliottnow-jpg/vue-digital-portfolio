@@ -232,6 +232,7 @@ function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) 
 function Nav() {
   const scrolled = useScrolled(24);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [logoOk, setLogoOk] = useState(true);
   const toggleMobile = () => setMobileOpen((s) => !s);
 
   return (
@@ -245,16 +246,22 @@ function Nav() {
         <a
           href="#"
           aria-label="Vue Digital — Home"
-          className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
+          className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
         >
-          {/* Replace text brand with PNG logo stored in /public/logo.png */}
-          <img
-            src="/logo.png"
-            alt="Vue Digital logo"
-            className="h-8 w-auto"
-            loading="eager"
-            decoding="async"
-          />
+          {logoOk ? (
+            <img
+              src="/logo.png"
+              alt="Vue Digital logo"
+              width={120}
+              height={28}
+              className="h-7 w-auto object-contain"
+              loading="eager"
+              decoding="async"
+              onError={() => setLogoOk(false)}
+            />
+          ) : (
+            <span className="font-semibold tracking-tight text-zinc-900">Vue Digital</span>
+          )}
         </a>
 
         <nav
@@ -274,18 +281,13 @@ function Nav() {
           ))}
         </nav>
 
+        {/* Right-side CTA: only one button */}
         <div className="hidden md:flex items-center gap-3">
           <a
             href="#contact"
             className="inline-flex h-10 items-center rounded-full bg-zinc-900 px-5 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
           >
             Work with Gilles
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex h-10 items-center rounded-full border border-zinc-300 px-5 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
-          >
-            Free Digital Opportunity Assessment
           </a>
         </div>
 
@@ -338,13 +340,6 @@ function Nav() {
               >
                 Work with Gilles
               </a>
-              <a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
-                className="rounded-xl border border-zinc-300 px-4 py-3 text-center hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
-              >
-                Free Digital Opportunity Assessment
-              </a>
             </div>
           </div>
         </div>
@@ -369,19 +364,16 @@ function Hero() {
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
             Results You Can Measure. Stories People Remember.
           </h1>
-          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio.</p>
+          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">
+            A digital marketing & content studio by{" "}
+            <span className="font-semibold text-zinc-900">Gilles Elliott</span>.
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href="#contact"
-              className="inline-flex h-11 items-center rounded-full bg-zinc-900 px-6 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
-            >
-              Work with Gilles
-            </a>
             <a
               href="#contact"
               className="inline-flex h-11 items-center rounded-full border border-zinc-300 px-6 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
             >
-              Free Digital Opportunity Assessment
+              Free Digital Growth Assessment
             </a>
           </div>
         </div>
