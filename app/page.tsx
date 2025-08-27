@@ -141,7 +141,8 @@ const PROOF_IMAGES: Record<string, string[]> = {
   ssb: [
   "TIKTOK:https://www.tiktok.com/embed/7288389063273352490",
   "INSTAGRAM:https://www.instagram.com/p/DNBNLtNOEWu/embed",
-  "TIKTOK:https://www.tiktok.com/embed/7283882112086822190"
+  "TIKTOK:https://www.tiktok.com/embed/7283882112086822190",
+  "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=dhy831jv&raw=1"
 ],
   luxurynaples: [
     "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
@@ -478,9 +479,13 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
   </div>
 ) : (
   <div
-    className={`grid gap-4 ${
-      id === "aam360" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "md:grid-cols-2"
-    }`}
+   className={`grid gap-4 ${
+  id === "aam360"
+    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    : id === "ssb"
+    ? "grid-cols-1 sm:grid-cols-2"
+    : "md:grid-cols-2"
+}`}
   >
     {PROOF_IMAGES[id]?.map((content, index) => (
       <Embed
