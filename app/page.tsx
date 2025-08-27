@@ -149,7 +149,7 @@ const CASES: Record<string, { summary: string; bullets: string[]; proofIdeas: st
 const PROOF_IMAGES = {
   aam360: [
     "https://www.dropbox.com/scl/fi/t0vrpotvuxiydez7rki64/Screenshot-2025-08-26-at-8.42.02-AM.png?rlkey=xk2q50ckyszowfdqkow5cb0vb&st=ev1y782f&raw=1",
-    "https://www.dropbox.com/scl/fi/y0b05en0ca98ezkbw4yqf/Screenshot-2025-08-26-at-9.00.59-AM.png?rlkey=l4m4j889nodpnq9hkq2pxkohm&st=0j0gvis0&raw=1", 
+    "TIKTOK:https://www.tiktok.com/embed/7285951248086437163", 
   ],
   expressions: [
     "https://www.dropbox.com/scl/fi/3bxbwgkgw1fb86mrf9rk0/Screenshot-2025-06-02-at-9.55.15-PM.png?rlkey=ywac3qcw5tq6eknxk0geiijvd&st=glhbxwja&raw=1",
@@ -274,11 +274,23 @@ function CaseSection({ id, title, kpi }) {
             <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">Discuss a similar outcome →</a>
           </div>
           <div className="grid md:grid-cols-2 gap-4">
-            {PROOF_IMAGES[id]?.map((imgUrl, index) => (
-              <div key={index} className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(imgUrl, '_blank')}>
-                <img src={imgUrl} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
-              </div>
-            ))}
+            {PROOF_IMAGES[id]?.map((content, index) => (
+  <div key={index} className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden">
+    {content.startsWith('TIKTOK:') ? (
+      <iframe 
+        src={content.replace('TIKTOK:', '')}
+        width="100%" 
+        height="400"
+        frameBorder="0" 
+        scrolling="no" 
+        allow="encrypted-media"
+        className="rounded-2xl"
+      />
+    ) : (
+      <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto cursor-pointer" onClick={() => window.open(content, '_blank')} />
+    )}
+  </div>
+))}
           </div>
         </div>
       </div>
