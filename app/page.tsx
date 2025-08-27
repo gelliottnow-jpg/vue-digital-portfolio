@@ -166,10 +166,10 @@ const PROOF_IMAGES = {
   "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
   "INSTAGRAM:https://www.instagram.com/p/DJrtNbIxCdt/embed"
 ],
-  mojo: [
-    "https://www.dropbox.com/scl/fi/qpm5hneh8n3rh52mk6wfo/mojoluxury.png?rlkey=phqx5t6memqzcefqtm72cgmp6&st=v06wrssy&raw=1",
-    "https://www.dropbox.com/scl/fi/e5qc9ytlr4lv6nco6d3ot/HeroImage-8.png?rlkey=7173msk1itj13fan5mmf1q056&st=fmnxwrzr&raw=1"
-  ],
+    mojo: [
+  "YOUTUBE:https://www.youtube.com/embed/w7K2bJW1kMY",
+  "YOUTUBE:https://www.youtube.com/embed/dZI6A7-DpEo"
+],
   bubble: [
     "https://www.dropbox.com/scl/fi/pupbzhpn1d9zj22jx9jse/HeroImage-9.png?rlkey=j7zdtkwtorlo9hh0cav9bqjdp&st=fumgegul&raw=1"
   ]
@@ -294,6 +294,16 @@ function CaseSection({ id, title, kpi }) {
         frameBorder="0" 
         scrolling="no" 
         allow="encrypted-media"
+        style={{border: 'none'}}
+      />
+    ) : content.startsWith('YOUTUBE:') ? (
+      <iframe 
+        src={content.replace('YOUTUBE:', '')}
+        width="560" 
+        height="315"
+        frameBorder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
         style={{border: 'none'}}
       />
     ) : (
