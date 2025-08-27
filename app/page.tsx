@@ -73,7 +73,7 @@ const HIGHLIGHTS = [
   },
 ];
 
-const CASES: Record<string, { summary: string; bullets: string[]; proofIdeas: string[] } > = {
+const CASES = {
   aam360: {
     summary:
       "Short-form video (TikTok) + Facebook ads loop, UGC-style edits, and a simple checkout funnel with autoresponders.",
@@ -257,6 +257,7 @@ function Highlights() {
 function CaseSection({ id, title, kpi }) {
   const c = CASES[id];
   if (!c) return null;
+  
   return (
     <section id={id} className="py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
@@ -274,101 +275,113 @@ function CaseSection({ id, title, kpi }) {
             </ul>
             <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">Discuss a similar outcome →</a>
           </div>
+          
           {id === 'expressions' ? (
-  <div className="grid grid-cols-2 gap-4">
-    <div className="space-y-4">
-      <div>
-        {PROOF_IMAGES[id][0].startsWith('VIMEO:') ? (
-          <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-            <iframe src={PROOF_IMAGES[id][0].replace('VIMEO:', '')} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="Client Testimonial" />
-          </div>
-        ) : (
-          <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][0], '_blank')}>
-            <img src={PROOF_IMAGES[id][0]} alt="Proof 1" className="w-full h-auto" />
-          </div>
-        )}
-      </div>
-      <div>
-        {PROOF_IMAGES[id][2] && PROOF_IMAGES[id][2].startsWith('VIMEO:') ? (
-          <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-            <iframe src={PROOF_IMAGES[id][2].replace('VIMEO:', '')} frameBorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerPolicy="strict-origin-when-cross-origin" style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} title="Client Testimonial" />
-          </div>
-        ) : PROOF_IMAGES[id][2] ? (
-          <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][2], '_blank')}>
-            <img src={PROOF_IMAGES[id][2]} alt="Proof 3" className="w-full h-auto" />
-          </div>
-        ) : null}
-      </div>
-    </div>
-    <div>
-      <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][1], '_blank')}>
-        <img src={PROOF_IMAGES[id][1]} alt="Proof 2" className="w-full h-auto" />
-      </div>
-    </div>
-  </div>
-) : (
-  <div className="grid md:grid-cols-2 gap-4">
-    {PROOF_IMAGES[id]?.map((content, index) => (
-      <div key={index}>
-        {content.startsWith('TIKTOK:') ? (
-          // ... keep all your existing video logic here for other cases
-      <iframe 
-        src={content.replace('TIKTOK:', '')}
-        width="325" 
-        height="578"
-        frameBorder="0" 
-        scrolling="no" 
-        allow="encrypted-media"
-        style={{border: 'none'}}
-      />
-    ) : content.startsWith('INSTAGRAM:') ? (
-      <iframe 
-        src={content.replace('INSTAGRAM:', '')}
-        width="400" 
-        height="600"
-        frameBorder="0" 
-        scrolling="no" 
-        allow="encrypted-media"
-        style={{border: 'none'}}
-      />
-    ) : content.startsWith('YOUTUBE:') ? (
-      <iframe 
-        src={content.replace('YOUTUBE:', '')}
-        width="560" 
-        height="315"
-        frameBorder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        style={{border: 'none'}}
-      />
-    ) : content.startsWith('VIMEO:') ? (
-      <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
-        <iframe 
-          src={content.replace('VIMEO:', '')}
-          frameBorder="0" 
-          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}}
-          title="Client Testimonial"
-        />
-      </div>
-    ) : (
-      <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(content, '_blank')}>
-        <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
-      </div>
-    )}
-      </div>
-    ))}
-          </div>
-        )}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div>
+                  {PROOF_IMAGES[id][0].startsWith('VIMEO:') ? (
+                    <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+                      <iframe 
+                        src={PROOF_IMAGES[id][0].replace('VIMEO:', '')} 
+                        frameBorder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                        referrerPolicy="strict-origin-when-cross-origin" 
+                        style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} 
+                        title="Client Testimonial" 
+                      />
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][0], '_blank')}>
+                      <img src={PROOF_IMAGES[id][0]} alt="Proof 1" className="w-full h-auto" />
+                    </div>
+                  )}
+                </div>
+                <div>
+                  {PROOF_IMAGES[id][2] && PROOF_IMAGES[id][2].startsWith('VIMEO:') ? (
+                    <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+                      <iframe 
+                        src={PROOF_IMAGES[id][2].replace('VIMEO:', '')} 
+                        frameBorder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                        referrerPolicy="strict-origin-when-cross-origin" 
+                        style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}} 
+                        title="Client Testimonial" 
+                      />
+                    </div>
+                  ) : PROOF_IMAGES[id][2] ? (
+                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][2], '_blank')}>
+                      <img src={PROOF_IMAGES[id][2]} alt="Proof 3" className="w-full h-auto" />
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              <div>
+                <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(PROOF_IMAGES[id][1], '_blank')}>
+                  <img src={PROOF_IMAGES[id][1]} alt="Proof 2" className="w-full h-auto" />
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-4">
+              {PROOF_IMAGES[id]?.map((content, index) => (
+                <div key={index}>
+                  {content.startsWith('TIKTOK:') ? (
+                    <iframe 
+                      src={content.replace('TIKTOK:', '')}
+                      width="325" 
+                      height="578"
+                      frameBorder="0" 
+                      scrolling="no" 
+                      allow="encrypted-media"
+                      style={{border: 'none'}}
+                    />
+                  ) : content.startsWith('INSTAGRAM:') ? (
+                    <iframe 
+                      src={content.replace('INSTAGRAM:', '')}
+                      width="400" 
+                      height="600"
+                      frameBorder="0" 
+                      scrolling="no" 
+                      allow="encrypted-media"
+                      style={{border: 'none'}}
+                    />
+                  ) : content.startsWith('YOUTUBE:') ? (
+                    <iframe 
+                      src={content.replace('YOUTUBE:', '')}
+                      width="560" 
+                      height="315"
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      style={{border: 'none'}}
+                    />
+                  ) : content.startsWith('VIMEO:') ? (
+                    <div style={{padding:'56.25% 0 0 0', position:'relative'}}>
+                      <iframe 
+                        src={content.replace('VIMEO:', '')}
+                        frameBorder="0" 
+                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        style={{position:'absolute', top:0, left:0, width:'100%', height:'100%'}}
+                        title="Client Testimonial"
+                      />
+                    </div>
+                  ) : (
+                    <div className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(content, '_blank')}>
+                      <img src={content} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
 }
-      </div>
-    </section>
-  );
-}
+
 function Approach() {
   const steps = [
     { title: "Discover", body: "Goals, offers, audience truths, voice." },
@@ -429,7 +442,7 @@ function Contact() {
  * These act as simple test cases to catch regressions in content wiring.
  */
 function DevTests() {
-  const [results, setResults] = useState<{ name: string; pass: boolean; details?: string }[]>([]);
+  const [results, setResults] = useState([]);
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -438,7 +451,7 @@ function DevTests() {
     setShow(isDev);
     if (!isDev) return;
 
-    const tests: { name: string; pass: boolean; details?: string }[] = [];
+    const tests = [];
 
     // Test 1: Hero contains "Gilles Elliott"
     const hero = document.getElementById("hero");
@@ -446,9 +459,9 @@ function DevTests() {
     tests.push({ name: "Hero includes name", pass: heroPass });
 
     // Test 2: All highlight anchors map to a case id
-    const missing: string[] = [];
+    const missing = [];
     HIGHLIGHTS.forEach(h => {
-      if (!CASES[h.anchor as keyof typeof CASES]) missing.push(h.anchor);
+      if (!CASES[h.anchor]) missing.push(h.anchor);
     });
     tests.push({ name: "Highlights map to cases", pass: missing.length === 0, details: missing.join(", ") });
 
@@ -462,10 +475,9 @@ function DevTests() {
     // Test 4b: Image actually loaded (naturalWidth > 0)
     setTimeout(() => {
       const heroEl = document.getElementById('hero');
-      const img = heroEl?.querySelector('img') as HTMLImageElement | null;
+      const img = heroEl?.querySelector('img');
       const ok = !!img && img.complete && (img.naturalWidth || 0) > 0;
-      results.push({ name: 'Hero image rendered', pass: ok });
-      setResults([...results]);
+      setResults(prev => [...prev, { name: 'Hero image rendered', pass: ok }]);
     }, 500);
 
     // Test 5: Ensure Results & Clients sections are removed
@@ -503,13 +515,13 @@ export default function VueDigitalPortfolioPage() {
       <Hero />
       <Highlights />
       {/* Deep Cases - Reordered to match portfolio grid */}
-<CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
-<CaseSection id="expressions" title="Expressions in Design — Quick‑Win Revenue" kpi="5-figures monthly revenue in 30 days" />
-<CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" kpi="$30/lead; 100K views in 30 days" />
-<CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
-<CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
-<CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" kpi="250K views; 750+ followers" />
-<CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six‑Figure Ad Funnels" kpi="Event marketing" />
+      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
+      <CaseSection id="expressions" title="Expressions in Design — Quick‑Win Revenue" kpi="5-figures monthly revenue in 30 days" />
+      <CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" kpi="$30/lead; 100K views in 30 days" />
+      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
+      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
+      <CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" kpi="250K views; 750+ followers" />
+      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six‑Figure Ad Funnels" kpi="Event marketing" />
       <Approach />
       <Contact />
       <DevTests />
