@@ -2,12 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 
-// One-file, Apple-esque, results-first portfolio page.
-// TailwindCSS required. Drop this into a Next.js page (app/page.tsx) or any React app.
 // --- Hero asset config ------------------------------------------------------
-// Put your image in your project's /public folder as hero.webp (1600x1280 ideal)
-// and this page will load it reliably without a huge inline data URI.
-const HERO_SRC = "https://www.dropbox.com/scl/fi/5p1ea4pp5v6tlr29o8u6t/HeroImage-1.png?rlkey=wjgr214tpldjb5191iuxja29k&st=0odcecfr&raw=1"; // change this path if you prefer another filename
+const HERO_SRC =
+  "https://www.dropbox.com/scl/fi/5p1ea4pp5v6tlr29o8u6t/HeroImage-1.png?rlkey=wjgr214tpldjb5191iuxja29k&st=0odcecfr&raw=1";
 // ---------------------------------------------------------------------------
 
 const NAV_LINKS = [
@@ -16,6 +13,7 @@ const NAV_LINKS = [
   { href: "#contact", label: "Contact" },
 ];
 
+// Highlights (ka and carvana removed to avoid empty anchors)
 const HIGHLIGHTS = [
   {
     title: "All Around Me 360 Photo Booth",
@@ -59,21 +57,9 @@ const HIGHLIGHTS = [
     img: "https://www.dropbox.com/scl/fi/13xzal9853pwqv49acqxp/bubbles.png?rlkey=mkcjops0fite3l08kg7g0h57s&st=102v9lc5&raw=1",
     anchor: "bubble",
   },
-  {
-    title: "K&A Coastal Design",
-    kpi: "+$4,000 furniture sales in month one, Website build & Google Business Profile ranking",
-    img: "https://www.dropbox.com/scl/fi/57mnb499azbzttmpolsgl/ka.png?rlkey=t1w54ydjou6p76567cay50j2v&st=xey5y681&raw=1",
-    anchor: "ka",
-  },
-  {
-    title: "Carvana — Social Media & Reputation",
-    kpi: "Twitter / X & FB content + reputation orchestration",
-    img: "https://www.dropbox.com/scl/fi/7ecx016fa8qvinxp3gclt/cvna.png?rlkey=gu7qzq7xsnuzhi69t26bgqx70&st=uu2ex9b9&raw=1",
-    anchor: "carvana",
-  },
 ];
 
-const CASES: Record<string, { summary: string; bullets: string[]; proofIdeas: string[] } > = {
+const CASES = {
   aam360: {
     summary:
       "Short-form video (TikTok) + Facebook ads loop, UGC-style edits, and a simple checkout funnel with autoresponders.",
@@ -94,30 +80,18 @@ const CASES: Record<string, { summary: string; bullets: string[]; proofIdeas: st
       "100K views first month: 4 long-form videos/month + 20–24 shorts",
       "YouTube, Facebook, Instagram, TikTok",
     ],
-    proofIdeas: [
-      "Before/after analytics",
-      "Thumbnail grid evolution",
-      "Shorts montage stills",
-    ],
+    proofIdeas: ["Before/after analytics", "Thumbnail grid evolution", "Shorts montage stills"],
   },
   ssb: {
     summary:
       "Spectacle + credibility for a niche community: organic + paid distribution and creator collabs.",
-    bullets: [
-      "100+ new program memberships",
-      "1.5M+ impressions from two videos",
-      "Community testimonials",
-    ],
+    bullets: ["100+ new program memberships", "1.5M+ impressions from two videos", "Community testimonials"],
     proofIdeas: ["Launch video stills", "Order notifications (redacted)", "Comments"],
   },
   luxurynaples: {
     summary:
       "A property campaign built for attention and foot traffic. Short-form teasers, geo-targeted boosts, and open-house momentum.",
-    bullets: [
-      "50,000+ impressions in 30 days",
-      "15+ attendees across open houses",
-      "Local influencer marketing",
-    ],
+    bullets: ["50,000+ impressions in 30 days", "15+ attendees across open houses", "Local influencer marketing"],
     proofIdeas: ["Ads manager stats", "Open-house photos", "Reel tiles"],
   },
   mojo: {
@@ -135,46 +109,53 @@ const CASES: Record<string, { summary: string; bullets: string[]; proofIdeas: st
   ka: {
     summary:
       "Month-one revenue lift via GBP optimization, website launch, and Facebook Marketplaces.",
-    bullets: ["+$4,000 furniture sales in first month, Website build & Google Business Profile ranking"],
+    bullets: ["+$4,000 furniture sales in first month", "Website build & Google Business Profile ranking"],
     proofIdeas: ["POS exports (redacted)", "Showroom clips"],
   },
   carvana: {
-    summary: "Content posting for Twitter / X & Facebook plus coordination across major reputation platforms with brand-safe voice.",
+    summary:
+      "Content posting for Twitter / X & Facebook plus coordination across major reputation platforms with brand-safe voice.",
     bullets: ["Twitter / X & FB content + reputation orchestration"],
-    proofIdeas: ["Platform tiles", "Workflow diagram"]
-  }
+    proofIdeas: ["Platform tiles", "Workflow diagram"],
+  },
 };
 
-// ADD THE PROOF_IMAGES OBJECT RIGHT HERE:
-const PROOF_IMAGES = {
+const PROOF_IMAGES: Record<string, string[]> = {
   aam360: [
-    "https://www.dropbox.com/scl/fi/t0vrpotvuxiydez7rki64/Screenshot-2025-08-26-at-8.42.02-AM.png?rlkey=xk2q50ckyszowfdqkow5cb0vb&st=ev1y782f&raw=1",
-    "https://www.dropbox.com/scl/fi/y0b05en0ca98ezkbw4yqf/Screenshot-2025-08-26-at-9.00.59-AM.png?rlkey=l4m4j889nodpnq9hkq2pxkohm&st=0j0gvis0&raw=1", 
+    "TIKTOK:https://www.tiktok.com/embed/7308108106364456235",
+    "TIKTOK:https://www.tiktok.com/embed/7285951248086437163",
+    "TIKTOK:https://www.tiktok.com/embed/7245369751973760302",
   ],
   expressions: [
-    "https://www.dropbox.com/scl/fi/3bxbwgkgw1fb86mrf9rk0/Screenshot-2025-06-02-at-9.55.15-PM.png?rlkey=ywac3qcw5tq6eknxk0geiijvd&st=glhbxwja&raw=1",
-    "https://www.dropbox.com/scl/fi/93tg9bsin36x0k2mf8t05/Screenshot-2025-05-15-at-9.51.31-PM.png?rlkey=1m22idgzabzxc5ls83o0mxe1t&st=kin2856d&raw=1"
+    "IMG:https://www.dropbox.com/scl/fi/3bxbwgkgw1fb86mrf9rk0/Screenshot-2025-06-02-at-9.55.15-PM.png?rlkey=ywac3qcw5tq6eknxk0geiijvd&st=glhbxwja&raw=1",
+    "IMG:https://www.dropbox.com/scl/fi/93tg9bsin36x0k2mf8t05/Screenshot-2025-05-15-at-9.51.31-PM.png?rlkey=1m22idgzabzxc5ls83o0mxe1t&st=kin2856d&raw=1",
+    "VIMEO:https://player.vimeo.com/video/1113539417?badge=0&autopause=0&player_id=0&app_id=58479",
   ],
   autohaus: [
-    "https://www.dropbox.com/scl/fi/7ir7wqhd6gt80x7nkpgo4/HeroImage-7.png?rlkey=hev91yys2sbg4fnbylhg1ysu0&st=bozzldh8&raw=1",
-    "https://www.dropbox.com/scl/fi/7vnd71102t5c8ealshem7/IMG_4743.jpg?rlkey=y6k6zkx76fah3gool12k79sde&st=msj2cgqh&raw=1"
+    "YOUTUBE:https://www.youtube.com/embed/rm_C00zIy8M",
+    "INSTAGRAM:https://www.instagram.com/p/DNnyiuxtCZk/embed",
+    "YOUTUBE:https://www.youtube.com/embed/pQnHZo_4DOg",
   ],
   ssb: [
-    "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1"
+    "TIKTOK:https://www.tiktok.com/embed/7288389063273352490",
+    "INSTAGRAM:https://www.instagram.com/p/DNBNLtNOEWu/embed",
+    "TIKTOK:https://www.tiktok.com/embed/7283882112086822190",
+    "IMG:https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=dhy831jv&raw=1",
   ],
   luxurynaples: [
-    "https://www.dropbox.com/scl/fi/q4f6sslafxx1xuhavw0pq/IMG_0968-2.jpg?rlkey=lsnoetydeoaqqiuuxzpmr1hph&st=rxdvh4it&raw=1",
-    "https://www.dropbox.com/scl/fi/ijgmy11fk3aa3cxo91j6n/HeroImage-10.png?rlkey=kdedny1ewq3o1i355u5t3uu70&st=tcoiw8mn&raw=1"
+    "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
+    "INSTAGRAM:https://www.instagram.com/p/DJrtNbIxCdt/embed",
   ],
   mojo: [
-    "https://www.dropbox.com/scl/fi/qpm5hneh8n3rh52mk6wfo/mojoluxury.png?rlkey=phqx5t6memqzcefqtm72cgmp6&st=v06wrssy&raw=1",
-    "https://www.dropbox.com/scl/fi/e5qc9ytlr4lv6nco6d3ot/HeroImage-8.png?rlkey=7173msk1itj13fan5mmf1q056&st=fmnxwrzr&raw=1"
+    "YOUTUBE:https://www.youtube.com/embed/w7K2bJW1kMY",
+    "YOUTUBE:https://www.youtube.com/embed/dZI6A7-DpEo",
   ],
   bubble: [
-    "https://www.dropbox.com/scl/fi/pupbzhpn1d9zj22jx9jse/HeroImage-9.png?rlkey=j7zdtkwtorlo9hh0cav9bqjdp&st=fumgegul&raw=1"
-  ]
+    "IMG:https://www.dropbox.com/scl/fi/pupbzhpn1d9zj22jx9jse/HeroImage-9.png?rlkey=j7zdtkwtorlo9hh0cav9bqjdp&st=fumgegul&raw=1",
+  ],
 };
 
+// Utility hook
 function useScrolled(threshold = 32) {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -186,24 +167,174 @@ function useScrolled(threshold = 32) {
   return scrolled;
 }
 
+// Embed
+type EmbedProps = { content?: string; title?: string; tall?: boolean };
+function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) {
+  if (!content) return null;
+  const isTikTok = content.startsWith("TIKTOK:");
+  const isIG = content.startsWith("INSTAGRAM:");
+  const isYT = content.startsWith("YOUTUBE:");
+  const isVimeo = content.startsWith("VIMEO:");
+  const src = content.replace(/^([A-Z]+):/, "");
+
+  const baseFrameProps = {
+    className: "w-full rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden",
+    style: { border: "none" as const },
+    title,
+  };
+
+  if (isTikTok) return <iframe {...baseFrameProps} src={src} height={578} loading="lazy" />;
+  if (isIG) return <iframe {...baseFrameProps} src={src} height={tall ? 600 : 560} scrolling="no" loading="lazy" />;
+  if (isYT)
+    return (
+      <iframe
+        {...baseFrameProps}
+        src={src}
+        height={315}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    );
+  if (isVimeo)
+    return (
+      <div className="rounded-2xl border border-zinc-200 bg-zinc-100 overflow-hidden" style={{ position: "relative", paddingTop: "56.25%" }}>
+        <iframe
+          {...baseFrameProps}
+          src={src}
+          loading="lazy"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+        />
+      </div>
+    );
+  if (content.startsWith("IMG:"))
+    return (
+      <div className="rounded-2xl overflow-hidden">
+        <img src={content.replace("IMG:", "")} alt={title} className="w-full h-auto block" loading="lazy" decoding="async" />
+      </div>
+    );
+
+  return null;
+}
+
+// Nav, Hero, Highlights, CaseSection, Approach, Contact, DevTests unchanged 8/27...
+
+// ---------- UI ----------
 function Nav() {
   const scrolled = useScrolled(24);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const toggleMobile = () => setMobileOpen((s) => !s);
+
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition backdrop-blur ${
-      scrolled ? "bg-white/80 shadow-sm" : "bg-white/0"
-    }`}>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition backdrop-blur ${
+        scrolled ? "bg-white/80 shadow-sm" : "bg-white/0"
+      }`}
+      role="banner"
+    >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <a href="#" className="font-semibold tracking-tight text-zinc-900">Vue Digital</a>
-        <nav className="hidden md:flex gap-6 text-sm text-zinc-700">
+        <a
+          href="#"
+          aria-label="Vue Digital — Home"
+          className="font-semibold tracking-tight text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
+        >
+          Vue Digital
+        </a>
+
+        <nav
+          className="hidden md:flex gap-6 text-sm text-zinc-700"
+          aria-label="Main"
+          id="primary-navigation"
+          role="navigation"
+        >
           {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-zinc-900">
+            <a
+              key={l.href}
+              href={l.href}
+              className="hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
+            >
               {l.label}
             </a>
           ))}
         </nav>
-        <a href="#contact" className="hidden md:inline-flex h-10 items-center rounded-full bg-zinc-900 px-5 text-white hover:bg-zinc-800">Work with Gilles</a>
-        <button className="md:hidden h-9 w-9 rounded-full border border-zinc-200">≡</button>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="#contact"
+            className="inline-flex h-10 items-center rounded-full bg-zinc-900 px-5 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+          >
+            Work with Gilles
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex h-10 items-center rounded-full border border-zinc-300 px-5 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+          >
+            Free Digital Opportunity Assessment
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden h-9 w-9 rounded-full border border-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+          aria-label="Open menu"
+          aria-controls="mobile-menu"
+          aria-expanded={mobileOpen}
+          onClick={toggleMobile}
+        >
+          {mobileOpen ? "×" : "≡"}
+        </button>
       </div>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          className="md:hidden fixed inset-0 z-50 bg-white/95 backdrop-blur"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-4">
+            <div className="flex items-center justify-between">
+              <span className="font-semibold tracking-tight text-zinc-900">Vue Digital</span>
+              <button
+                className="h-9 w-9 rounded-full border border-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+                aria-label="Close menu"
+                onClick={() => setMobileOpen(false)}
+              >
+                ×
+              </button>
+            </div>
+            <div className="mt-6 grid gap-3 text-lg">
+              {NAV_LINKS.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="rounded-xl border border-zinc-200 bg-white px-4 py-3 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+                >
+                  {l.label}
+                </a>
+              ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-xl bg-zinc-900 text-white px-4 py-3 text-center hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+              >
+                Work with Gilles
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="rounded-xl border border-zinc-300 px-4 py-3 text-center hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+              >
+                Free Digital Opportunity Assessment
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
@@ -211,18 +342,44 @@ function Nav() {
 function Hero() {
   return (
     <section id="hero" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50">
+      {/* Skip link for a11y */}
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
+      >
+        Skip to Work
+      </a>
+
       <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
         <div>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">Results You Can Measure. Stories People Remember.</h1>
-          <p className="mt-5 text-zinc-800 text-lg md:text-xl md:whitespace-nowrap font-medium">A digital growth growth & content studio by <span className="font-semibold text-zinc-900">Gilles Elliott</span>.</p>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
+            Results You Can Measure. Stories People Remember.
+          </h1>
+          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio.</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#contact" className="inline-flex h-11 items-center rounded-full bg-zinc-900 px-6 text-white hover:bg-zinc-800">Work with Gilles</a>
-            <a href="#work" className="inline-flex h-11 items-center rounded-full border border-zinc-300 px-6 hover:bg-white">See the Work</a>
+            <a
+              href="#contact"
+              className="inline-flex h-11 items-center rounded-full bg-zinc-900 px-6 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+            >
+              Work with Gilles
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex h-11 items-center rounded-full border border-zinc-300 px-6 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+            >
+              Free Digital Opportunity Assessment
+            </a>
           </div>
         </div>
         <div className="relative aspect-[4/3] md:aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
-          <img className="h-full w-full object-cover" src={HERO_SRC} alt="Hero montage placeholder"/>
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10"/>
+          <img
+            className="h-full w-full object-cover"
+            src={HERO_SRC}
+            alt="Selected client work montage"
+            loading="eager"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
         </div>
       </div>
     </section>
@@ -233,12 +390,22 @@ function Highlights() {
   return (
     <section id="work" className="py-16 md:py-24 bg-zinc-50">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">Portfolio Highlights</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">Work that moved the needle</h2>
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {HIGHLIGHTS.map((h) => (
-            <a key={h.title} href={`#${h.anchor}`} className="group rounded-3xl overflow-hidden bg-white border border-zinc-200 hover:shadow-md transition block">
+            <a
+              key={h.title}
+              href={`#${h.anchor}`}
+              className="group rounded-3xl overflow-hidden bg-white border border-zinc-200 hover:shadow-md transition block focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+            >
               <div className="aspect-[4/3] overflow-hidden">
-                <img src={h.img} alt={h.title} className="h-full w-full object-cover"/>
+                <img
+                  src={h.img}
+                  alt={h.title}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="p-5">
                 <div className="text-sm uppercase tracking-widest text-zinc-500">{h.title}</div>
@@ -253,38 +420,82 @@ function Highlights() {
   );
 }
 
-function CaseSection({ id, title, kpi }) {
-  const c = CASES[id];
+function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: string }) {
+  const c = (CASES as Record<string, any>)[id];
   if (!c) return null;
+
   return (
     <section id={id} className="py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div>
           <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">{title}</h3>
-          <div className="inline-flex items-center rounded-full bg-zinc-900 text-white text-sm px-4 py-2">{kpi}</div>
+          {kpi ? <div className="mt-1 text-sm text-zinc-500">{kpi}</div> : null}
         </div>
+
         <div className="mt-6">
           <div className="mb-8">
             <p className="text-zinc-700 leading-relaxed">{c.summary}</p>
             <ul className="mt-4 space-y-2 text-zinc-800">
-              {c.bullets.map((b) => (
-                <li key={b} className="flex gap-2"><span className="text-zinc-400">▹</span><span>{b}</span></li>
+              {c.bullets.map((b: string) => (
+                <li key={b} className="flex gap-2">
+                  <span className="text-zinc-400">▹</span>
+                  <span>{b}</span>
+                </li>
               ))}
             </ul>
-            <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">Discuss a similar outcome →</a>
+            <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">
+              Discuss a similar outcome →
+            </a>
           </div>
-          <div className="grid md:grid-cols-2 gap-4">
-            {PROOF_IMAGES[id]?.map((imgUrl, index) => (
-              <div key={index} className="rounded-2xl bg-zinc-100 border border-zinc-200 overflow-hidden cursor-pointer" onClick={() => window.open(imgUrl, '_blank')}>
-                <img src={imgUrl} alt={c.proofIdeas[index] || `Proof ${index + 1}`} className="w-full h-auto" />
-              </div>
-            ))}
-          </div>
+
+          {/* Expressions custom layout; generic responsive grid otherwise */}
+         {/* Custom layouts for certain cases */}
+{ id === "expressions" ? (
+  <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-4">
+      <Embed content={PROOF_IMAGES[id]?.[0]} title="Expressions Proof 1" />
+      {PROOF_IMAGES[id]?.[2] ? (
+        <Embed content={PROOF_IMAGES[id][2]} title="Expressions Proof 3" />
+      ) : null}
+    </div>
+    <Embed content={PROOF_IMAGES[id]?.[1]} title="Expressions Proof 2" tall />
+  </div>
+) : id === "autohaus" ? (
+  <div className="grid grid-cols-2 gap-4">
+    <div className="space-y-4">
+      <Embed content={PROOF_IMAGES[id]?.[0]} title="Autohaus YouTube 1" />
+      {PROOF_IMAGES[id]?.[2] ? (
+        <Embed content={PROOF_IMAGES[id][2]} title="Autohaus YouTube 2" />
+      ) : null}
+    </div>
+    <Embed content={PROOF_IMAGES[id]?.[1]} title="Autohaus Instagram Reel" tall />
+  </div>
+) : (
+  <div
+   className={`grid gap-4 ${
+  id === "aam360"
+    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+    : id === "ssb"
+    ? "grid-cols-1 sm:grid-cols-2"
+    : "md:grid-cols-2"
+}`}
+  >
+    {PROOF_IMAGES[id]?.map((content, index) => (
+      <Embed
+        key={index}
+        content={content}
+        title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
+      />
+    ))}
+  </div>
+)}
+
         </div>
       </div>
     </section>
   );
 }
+
 function Approach() {
   const steps = [
     { title: "Discover", body: "Goals, offers, audience truths, voice." },
@@ -316,22 +527,45 @@ function Contact() {
     <section id="contact" className="py-16 md:py-24 bg-zinc-50">
       <div className="mx-auto max-w-3xl px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900">Let's make your brand unskippable.</h2>
-        <p className="mt-3 text-zinc-600">Email <a className="underline" href="mailto:gelliottnow@gmail.com">gelliottnow@gmail.com</a> or send a quick brief below.</p>
+        <p className="mt-3 text-zinc-600">
+          Email <a className="underline" href="mailto:gelliottnow@gmail.com">gelliottnow@gmail.com</a> or send a quick brief below.
+        </p>
         <div className="mt-8 grid gap-3 text-left">
           <div>
-            <label className="block text-sm text-zinc-600 mb-1">Name</label>
-            <input className="w-full h-12 rounded-xl border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-zinc-900" placeholder="Your name"/>
+            <label className="block text-sm text-zinc-600 mb-1" htmlFor="name">Name</label>
+            <input
+              id="name"
+              className="w-full h-12 rounded-xl border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-zinc-900"
+              placeholder="Your name"
+              aria-required="true"
+            />
           </div>
           <div>
-            <label className="block text-sm text-zinc-600 mb-1">Email</label>
-            <input type="email" className="w-full h-12 rounded-xl border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-zinc-900" placeholder="you@company.com"/>
+            <label className="block text-sm text-zinc-600 mb-1" htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              className="w-full h-12 rounded-xl border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-zinc-900"
+              placeholder="you@company.com"
+              aria-required="true"
+            />
           </div>
           <div>
-            <label className="block text-sm text-zinc-600 mb-1">What do you want to achieve?</label>
-            <textarea className="w-full min-h-[120px] rounded-xl border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-900" placeholder="Tell me about your goals, timeline, and budget range…"/>
+            <label className="block text-sm text-zinc-600 mb-1" htmlFor="goals">What do you want to achieve?</label>
+            <textarea
+              id="goals"
+              className="w-full min-h-[120px] rounded-xl border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-900"
+              placeholder="Tell me about your goals, timeline, and budget range…"
+            />
           </div>
           <div className="pt-2">
-            <button type="button" className="w-full h-12 rounded-xl bg-zinc-900 text-white hover:bg-zinc-800">Send Inquiry</button>
+            <button
+              type="button"
+              className="w-full h-12 rounded-xl bg-zinc-900 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+              aria-label="Send inquiry"
+            >
+              Send Inquiry
+            </button>
           </div>
           <p className="text-xs text-zinc-500 text-center">No spam. No fluff. Just outcomes.</p>
         </div>
@@ -342,7 +576,6 @@ function Contact() {
 
 /**
  * DevTests — lightweight runtime checks shown when URL has ?dev=1
- * These act as simple test cases to catch regressions in content wiring.
  */
 function DevTests() {
   const [results, setResults] = useState<{ name: string; pass: boolean; details?: string }[]>([]);
@@ -356,32 +589,33 @@ function DevTests() {
 
     const tests: { name: string; pass: boolean; details?: string }[] = [];
 
-    // Test 1: Hero contains "Gilles Elliott"
+    // Test 1: Hero contains headline
     const hero = document.getElementById("hero");
-    const heroPass = !!hero?.textContent?.includes("Gilles Elliott");
-    tests.push({ name: "Hero includes name", pass: heroPass });
+    const heroPass = !!hero?.textContent?.includes("Results You Can Measure");
+    tests.push({ name: "Hero includes headline", pass: heroPass });
 
     // Test 2: All highlight anchors map to a case id
     const missing: string[] = [];
-    HIGHLIGHTS.forEach(h => {
-      if (!CASES[h.anchor as keyof typeof CASES]) missing.push(h.anchor);
+    HIGHLIGHTS.forEach((h) => {
+      if (!(CASES as Record<string, any>)[h.anchor]) missing.push(h.anchor);
     });
     tests.push({ name: "Highlights map to cases", pass: missing.length === 0, details: missing.join(", ") });
 
     // Test 3: Contact section exists
     const contactPass = !!document.getElementById("contact");
     tests.push({ name: "Contact section present", pass: contactPass });
+
     // Test 4: Hero image has a non-empty src
-    const heroImg = hero?.querySelector('img');
-    const hasSrc = !!heroImg?.getAttribute('src');
+    const heroImg = hero?.querySelector("img");
+    const hasSrc = !!heroImg?.getAttribute("src");
     tests.push({ name: "Hero image has src", pass: hasSrc });
+
     // Test 4b: Image actually loaded (naturalWidth > 0)
     setTimeout(() => {
-      const heroEl = document.getElementById('hero');
-      const img = heroEl?.querySelector('img') as HTMLImageElement | null;
+      const heroEl = document.getElementById("hero");
+      const img = heroEl?.querySelector("img");
       const ok = !!img && img.complete && (img.naturalWidth || 0) > 0;
-      results.push({ name: 'Hero image rendered', pass: ok });
-      setResults([...results]);
+      setResults((prev) => [...prev, { name: "Hero image rendered", pass: ok }]);
     }, 500);
 
     // Test 5: Ensure Results & Clients sections are removed
@@ -395,12 +629,16 @@ function DevTests() {
 
   if (!show) return null;
 
-  const allPass = results.every(r => r.pass);
+  const allPass = results.every((r) => r.pass);
   return (
-    <div className={`fixed bottom-4 right-4 z-50 rounded-xl border px-4 py-3 text-sm shadow ${allPass ? "bg-emerald-50 border-emerald-200 text-emerald-800" : "bg-red-50 border-red-200 text-red-800"}`}>
+    <div
+      className={`fixed bottom-4 right-4 z-50 rounded-xl border px-4 py-3 text-sm shadow ${
+        allPass ? "bg-emerald-50 border-emerald-200 text-emerald-800" : "bg-red-50 border-red-200 text-red-800"
+      }`}
+    >
       <div className="font-medium">Dev Tests: {allPass ? "All passing" : "Failures"}</div>
       <ul className="mt-1 list-disc pl-5">
-        {results.map(r => (
+        {results.map((r) => (
           <li key={r.name}>
             {r.pass ? "✅" : "❌"} {r.name}
             {r.details && !r.pass ? <span className="ml-2 opacity-80">({r.details})</span> : null}
@@ -412,24 +650,26 @@ function DevTests() {
   );
 }
 
-export default function VueDigitalPortfolioPage() { 
+export default function VueDigitalPortfolioPage() {
   return (
     <main className="text-zinc-900">
       <Nav />
       <Hero />
       <Highlights />
       {/* Deep Cases - Reordered to match portfolio grid */}
-<CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
-<CaseSection id="expressions" title="Expressions in Design — Quick‑Win Revenue" kpi="5-figures monthly revenue in 30 days" />
-<CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" kpi="$30/lead; 100K views in 30 days" />
-<CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
-<CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
-<CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" kpi="250K views; 750+ followers" />
-<CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six‑Figure Ad Funnels" kpi="Event marketing" />
+      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
+      <CaseSection id="expressions" title="Expressions in Design — Quick-Win Revenue" kpi="5-figures monthly revenue in 30 days" />
+      <CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" kpi="$30/lead; 100K views in 30 days" />
+      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
+      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
+      <CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" kpi="250K views; 750+ followers" />
+      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six-Figure Ad Funnels" kpi="Event marketing" />
       <Approach />
       <Contact />
       <DevTests />
-      <footer className="py-10 border-t border-zinc-200 text-center text-sm text-zinc-600">© {new Date().getFullYear()} Vue Digital — Naples, FL</footer>
+      <footer className="py-10 border-t border-zinc-200 text-center text-sm text-zinc-600">
+        © {new Date().getFullYear()} Vue Digital — Naples, FL
+      </footer>
     </main>
   );
 }
