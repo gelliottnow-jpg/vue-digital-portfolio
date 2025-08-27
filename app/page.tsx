@@ -243,11 +243,18 @@ function Nav() {
       role="banner"
     >
       <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <a
-          href="#"
+                <a
+          href="/"
           aria-label="Vue Digital — Home"
-          className="flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
+          className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 rounded"
         >
+          <img
+            src="/logo.png"
+            alt="Vue Digital logo"
+            className="h-8 w-auto"
+            loading="lazy"
+          />
+        </a>
           {logoOk ? (
             <img
               src="/logo.png"
