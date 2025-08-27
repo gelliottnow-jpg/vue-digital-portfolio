@@ -163,9 +163,9 @@ const PROOF_IMAGES = {
     "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1"
   ],
   luxurynaples: [
-    "https://www.dropbox.com/scl/fi/q4f6sslafxx1xuhavw0pq/IMG_0968-2.jpg?rlkey=lsnoetydeoaqqiuuxzpmr1hph&st=rxdvh4it&raw=1",
-    "https://www.dropbox.com/scl/fi/ijgmy11fk3aa3cxo91j6n/HeroImage-10.png?rlkey=kdedny1ewq3o1i355u5t3uu70&st=tcoiw8mn&raw=1"
-  ],
+  "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
+  "INSTAGRAM:https://www.instagram.com/p/DJrtNbIxCdt/embed"
+],
   mojo: [
     "https://www.dropbox.com/scl/fi/qpm5hneh8n3rh52mk6wfo/mojoluxury.png?rlkey=phqx5t6memqzcefqtm72cgmp6&st=v06wrssy&raw=1",
     "https://www.dropbox.com/scl/fi/e5qc9ytlr4lv6nco6d3ot/HeroImage-8.png?rlkey=7173msk1itj13fan5mmf1q056&st=fmnxwrzr&raw=1"
@@ -281,6 +281,16 @@ function CaseSection({ id, title, kpi }) {
         src={content.replace('TIKTOK:', '')}
         width="325" 
         height="578"
+        frameBorder="0" 
+        scrolling="no" 
+        allow="encrypted-media"
+        style={{border: 'none'}}
+      />
+    ) : content.startsWith('INSTAGRAM:') ? (
+      <iframe 
+        src={content.replace('INSTAGRAM:', '')}
+        width="400" 
+        height="600"
         frameBorder="0" 
         scrolling="no" 
         allow="encrypted-media"
