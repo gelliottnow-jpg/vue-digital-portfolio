@@ -139,8 +139,10 @@ const PROOF_IMAGES: Record<string, string[]> = {
     "YOUTUBE:https://www.youtube.com/embed/pQnHZo_4DOg"
   ],
   ssb: [
-    "https://www.dropbox.com/scl/fi/50po4x6xc4bohyqovqzm5/shortsteelbending.png?rlkey=z5rhrweo4tous6unr6ni51y84&st=nc5xkgpd&raw=1",
-  ],
+  "TIKTOK:https://www.tiktok.com/embed/7288389063273352490",
+  "INSTAGRAM:https://www.instagram.com/p/DNBNLtNOEWu/embed",
+  "TIKTOK:https://www.tiktok.com/embed/7283882112086822190"
+],
   luxurynaples: [
     "INSTAGRAM:https://www.instagram.com/p/DJXTc5tye2J/embed",
     "INSTAGRAM:https://www.instagram.com/p/DJrtNbIxCdt/embed",
