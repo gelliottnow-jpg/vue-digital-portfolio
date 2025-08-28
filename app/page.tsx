@@ -508,16 +508,16 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
 
 function Approach() {
   const steps = [
-    { title: "Discover", body: "Goals, offers, audience truths, voice." },
-    { title: "Design", body: "Hooks, scripts, shotlists, titles/thumbnails, tracking plan." },
-    { title: "Deploy", body: "Capture, edit pipeline, publish ops, paid amplification." },
-    { title: "Dial-In", body: "Iterate on data: watch-through, CTR, leads, CAC/LTV." },
+    { title: "Learn", body: "We start by understanding your goals, customers, and what makes your business unique." },
+    { title: "Plan", body: "We map out a simple, clear plan to get you more traffic, more leads, and more sales." },
+    { title: "Launch", body: "We create and post high-quality content, ads, and campaigns all managed for you." },
+    { title: "Grow", body: "We track results and keep improving every week to get you the best return on your investment." },
   ];
   const tools = ["Meta Ads", "Google Ads", "YouTube Studio", "TikTok", "BrightLocal", "HubSpot", "ClickUp", "Adobe", "Shopify"];
   return (
     <section id="approach" className="py-16 md:py-24 bg-zinc-50">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">How We Work</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-zinc-900">How We Help Your Business Grow</h2>
         <div className="mt-8 grid md:grid-cols-4 gap-6">
           {steps.map((s) => (
             <div key={s.title} className="rounded-3xl border border-zinc-200 bg-white p-6">
@@ -667,13 +667,13 @@ export default function VueDigitalPortfolioPage() {
       <Hero />
       <Highlights />
       {/* Deep Cases - Reordered to match portfolio grid */}
-      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
-      <CaseSection id="expressions" title="Expressions in Design — Local Marketplace Dominance" kpi="5-figures monthly revenue in 30 days" />
-      <CaseSection id="autohaus" title="Autohaus of Naples — Dormant to Dominant" kpi="$30/lead; 100K views in 30 days" />
-      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
-      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
-      <CaseSection id="mojo" title="MoJo Scottsdale — Luxury Real Estate Marketing" kpi="250K views; 750+ followers" />
-      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Soldout Events" kpi="Event marketing" />
+      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" />
+      <CaseSection id="expressions" title="Expressions in Design — Local Marketplace Dominance" />
+      <CaseSection id="autohaus" title="Autohaus of Naples — Dormant to Dominant" />
+      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" />
+      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" />
+      <CaseSection id="mojo" title="MoJo Scottsdale — Luxury Real Estate Marketing" />
+      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Soldout Events" />
       <Approach />
       <Contact />
       <DevTests />
