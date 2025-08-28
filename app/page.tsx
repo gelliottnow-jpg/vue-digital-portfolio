@@ -153,7 +153,6 @@ const PROOF_IMAGES: Record<string, string[]> = {
  bubble: [
   "INSTAGRAM:https://www.instagram.com/p/C-YT4gLNNID/embed",
   "INSTAGRAM:https://www.instagram.com/reel/C-GOkmgoHCP/embed", 
-  "INSTAGRAM:https://www.instagram.com/reel/C900qezoBT8/embed",
 ],
 };
 
