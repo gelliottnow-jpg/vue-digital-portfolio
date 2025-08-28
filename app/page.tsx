@@ -62,49 +62,72 @@ const HIGHLIGHTS = [
 const CASES = {
   aam360: {
     summary:
-      "Short-form video (TikTok) + Facebook ads loop, UGC-style edits, and a simple checkout funnel with autoresponders.",
-    bullets: ["$5 leads", "5M+ TikTok impressions", "6-figure exit thanks to social media"],
+      "Consistent weekly video posting on TikTok & Instagram resulted in creating a viral brand with millions of eyeballs. We combined the social media virality with unique Facebook Ads and a simple checkout funnel on the business website resulting in $5 qualified leads on autopilot.",
+    bullets: ["$5 QUALIFIED event rental leads", "5M+ TikTok impressions", "6-figure exit thanks to social media"],
     proofIdeas: ["TikTok analytics", "Lead cost export", "Booking pings"],
+    cta: "Discuss Video Marketing & Digital Ads",
   },
   expressions: {
     summary:
-      "Quick-win revenue via Facebook Marketplace playbook: photography, listings, lead handling, and review capture.",
-    bullets: ["Added 5-figures of monthly revenue in 30 days"],
+      "Within 48 hours of starting Facebook Marketplace listing services, we sold a piece that had sat unsold for over a decade. Four weeks later, Facebook sales topped $13,000.",
+    bullets: [
+      "Added 5-figures of monthly revenue in 30 days",
+      "Photographed and listed inventory online generating 473 leads", 
+      "Expanded the store's local reach by sending paying customers from outside the store's geographic reach by 100 miles"
+    ],
     proofIdeas: ["Invoices (redacted)", "Listing photo collage"],
+    cta: "Discuss Selling Your Inventory Online",
   },
   autohaus: {
     summary:
-      "We rebuilt a dormant YouTube channel with a weekly cadence, narrative-first reviews, and shorts. Titles and thumbnails were re-engineered for CTR.",
+      "Complete social media relaunch across YouTube, Facebook, and Instagram for a once-viral luxury automotive brand. Drove rapid engagement and lead generation within the first 30 days.",
     bullets: [
       "$30 cost per lead via Facebook Ads",
-      "100K views first month: 4 long-form videos/month + 20–24 shorts",
-      "YouTube, Facebook, Instagram, TikTok",
+      "100K views first month up 35% from prev. month",
+      "All video content captured on-site and produced by Vue Digital on behalf of client",
     ],
     proofIdeas: ["Before/after analytics", "Thumbnail grid evolution", "Shorts montage stills"],
+    cta: "Discuss video marketing & social media management",
   },
   ssb: {
     summary:
-      "Spectacle + credibility for a niche community: organic + paid distribution and creator collabs.",
-    bullets: ["100+ new program memberships", "1.5M+ impressions from two videos", "Community testimonials"],
+      "Spectacle + credibility for a niche community: organic + paid video distribution and creator collabs.",
+    bullets: [
+      "100+ new program memberships", 
+      "1.5M+ impressions from two videos", 
+      "Videos scripted and produced on behalf of client's social pages"
+    ],
     proofIdeas: ["Launch video stills", "Order notifications (redacted)", "Comments"],
+    cta: "Discuss growing your social media",
   },
   luxurynaples: {
     summary:
-      "A property campaign built for attention and foot traffic. Short-form teasers, geo-targeted boosts, and open-house momentum.",
-    bullets: ["50,000+ impressions in 30 days", "15+ attendees across open houses", "Local influencer marketing"],
+      "A property campaign built for attention and foot traffic. Short-form teasers, geo-targeted posting, and open-house momentum.",
+    bullets: [
+      "50,000+ impressions in 30 days", 
+      "15+ attendee open house", 
+      "Local influencer marketing"
+    ],
     proofIdeas: ["Ads manager stats", "Open-house photos", "Reel tiles"],
+    cta: "Discuss social media marketing or aerial drone services",
   },
   mojo: {
     summary:
-      "From flat to fanbase: content system, hook-first scripting, cinematic cuts, and brand-consistent thumbnails.",
-    bullets: ["250K YouTube views", "750+ followers", "Dramatic creative before/after"],
+      "Developed a full-scale content system that transformed Arizona realtors' quiet channel into a recognizable local brand, driving consistent audience growth and lead generation.",
+    bullets: [
+      "Over a quarter-million views from thousands of subscribers", 
+      "Professional videography of million dollar homes", 
+      "Set content standards with dramatic before / after"
+    ],
     proofIdeas: ["YT analytics", "Before/after tiles"],
+    cta: "Discuss growing on YouTube and content creation",
   },
   bubble: {
     summary:
-      "On-site capture turned into performance creatives for FB/Google with rapid post-production and multi-variant testing.",
-    bullets: ["Six-figure registration funnels", "Viral social media video strategy"],
+      "Filmed large events across the nation (30,000+ participants) turning videos into performance creatives for Facebook, Instagram, and Google using a six-figure ad budget. Built a digital powerhouse generating millions in revenue and online.",
+    bullets: ["Six-figure registration funnels", "Viral social media ads strategy"],
     proofIdeas: ["Ad dashboards", "Registration spikes vs. content drops"],
+    cta: "Discuss social media and digital marketing",
   },
   ka: {
     summary:
@@ -150,10 +173,9 @@ const PROOF_IMAGES: Record<string, string[]> = {
     "YOUTUBE:https://www.youtube.com/embed/w7K2bJW1kMY",
     "YOUTUBE:https://www.youtube.com/embed/dZI6A7-DpEo",
   ],
- bubble: [
-  "INSTAGRAM:https://www.instagram.com/p/C-YT4gLNNID/embed",
-  "INSTAGRAM:https://www.instagram.com/reel/C-GOkmgoHCP/embed", 
-],
+  bubble: [
+    "IMG:https://www.dropbox.com/scl/fi/pupbzhpn1d9zj22jx9jse/HeroImage-9.png?rlkey=j7zdtkwtorlo9hh0cav9bqjdp&st=fumgegul&raw=1",
+  ],
 };
 
 // Utility hook
@@ -253,7 +275,7 @@ function Nav() {
         </a>
 
         <nav
-          className="hidden md:flex gap-6 text-sm text-zinc-700"
+          className="hidden md:flex gap-6 text-base text-zinc-700"
           aria-label="Main"
           id="primary-navigation"
           role="navigation"
@@ -434,7 +456,7 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
               ))}
             </ul>
             <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">
-              Discuss a similar outcome →
+              {c.cta} →
             </a>
           </div>
 
@@ -645,13 +667,13 @@ export default function VueDigitalPortfolioPage() {
       <Hero />
       <Highlights />
       {/* Deep Cases - Reordered to match portfolio grid */}
-      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" />
-      <CaseSection id="expressions" title="Expressions in Design — Quick-Win Revenue" />
-      <CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" />
-      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" />
-      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" />
-      <CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" />
-      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six-Figure Ad Funnels" />
+      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
+      <CaseSection id="expressions" title="Expressions in Design — Local Marketplace Dominance" kpi="5-figures monthly revenue in 30 days" />
+      <CaseSection id="autohaus" title="Autohaus of Naples — Dormant to Dominant" kpi="$30/lead; 100K views in 30 days" />
+      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
+      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
+      <CaseSection id="mojo" title="MoJo Scottsdale — Luxury Real Estate Marketing" kpi="250K views; 750+ followers" />
+      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Soldout Events" kpi="Event marketing" />
       <Approach />
       <Contact />
       <DevTests />
