@@ -645,13 +645,13 @@ export default function VueDigitalPortfolioPage() {
       <Hero />
       <Highlights />
       {/* Deep Cases - Reordered to match portfolio grid */}
-      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" kpi="$5 leads; 5M+ views" />
-      <CaseSection id="expressions" title="Expressions in Design — Quick-Win Revenue" kpi="5-figures monthly revenue in 30 days" />
-      <CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" kpi="$30/lead; 100K views in 30 days" />
-      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" kpi="100+ new members" />
-      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" kpi="50K impressions; 15+ attendees" />
-      <CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" kpi="250K views; 750+ followers" />
-      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six-Figure Ad Funnels" kpi="Event marketing" />
+      <CaseSection id="aam360" title="All Around Me 360 Photo Booth — Demand on Autopilot" />
+      <CaseSection id="expressions" title="Expressions in Design — Quick-Win Revenue" />
+      <CaseSection id="autohaus" title="Autohaus of Naples — Channel Relaunch → Leads" />
+      <CaseSection id="ssb" title="Short Steel Bending Co. — Membership Growth Engine" />
+      <CaseSection id="luxurynaples" title="LuxuryNaples.com — Open House Demand at Scale" />
+      <CaseSection id="mojo" title="MoJo Scottsdale — From Flat to Fanbase" />
+      <CaseSection id="bubble" title="Bubble Run 5K & Muddy Dash — Six-Figure Ad Funnels" />
       <Approach />
       <Contact />
       <DevTests />
