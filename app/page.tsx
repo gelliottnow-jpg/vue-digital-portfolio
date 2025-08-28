@@ -585,7 +585,7 @@ function Contact() {
               id="email"
               type="email"
               className="w-full h-12 rounded-xl border border-zinc-300 px-4 focus:outline-none focus:ring-2 focus:ring-zinc-900"
-              placeholder="you@company.com"
+              placeholder="you@email.com"
               aria-required="true"
             />
           </div>
@@ -594,7 +594,7 @@ function Contact() {
             <textarea
               id="goals"
               className="w-full min-h-[120px] rounded-xl border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-900"
-              placeholder="Tell me about your goals, timeline, and budget range…"
+              placeholder="E.g., grow online sales, launch video ads, go viral on social media, or Google Business Rankings.."
             />
           </div>
           <div className="pt-2">
