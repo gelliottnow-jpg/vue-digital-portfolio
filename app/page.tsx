@@ -594,7 +594,7 @@ function Contact() {
             <textarea
               id="goals"
               className="w-full min-h-[120px] rounded-xl border border-zinc-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-zinc-900"
-              placeholder="E.g., grow online sales, launch video ads, go viral on social media, or Google Business Rankings.."
+              placeholder="E.g., grow online sales, launch video ads, go viral on social media, or Google Business Rankings..."
             />
           </div>
           <div className="pt-2">
