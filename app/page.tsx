@@ -72,8 +72,8 @@ const CASES = {
       "Within 48 hours of starting Facebook Marketplace listing services, we sold a piece that had sat unsold for over a decade. Four weeks later, Facebook sales topped $13,000.",
     bullets: [
       "Added 5-figures of monthly revenue in 30 days",
-      "Photographed and listed inventory online generating 473 leads", 
-      "Expanded the store's local reach by sending paying customers from outside the store's geographic reach by 100 miles"
+      "Photographed and listed inventory online generating 473 leads",
+      "Expanded the store's local reach by sending paying customers from outside the store's geographic reach by 100 miles",
     ],
     proofIdeas: ["Invoices (redacted)", "Listing photo collage"],
     cta: "Discuss Selling Your Inventory Online",
@@ -93,9 +93,9 @@ const CASES = {
     summary:
       "Spectacle + credibility for a niche community: organic + paid video distribution and creator collabs.",
     bullets: [
-      "100+ new program memberships", 
-      "1.5M+ impressions from two videos", 
-      "Videos scripted and produced on behalf of client's social pages"
+      "100+ new program memberships",
+      "1.5M+ impressions from two videos",
+      "Videos scripted and produced on behalf of client's social pages",
     ],
     proofIdeas: ["Launch video stills", "Order notifications (redacted)", "Comments"],
     cta: "Discuss growing your social media",
@@ -103,11 +103,7 @@ const CASES = {
   luxurynaples: {
     summary:
       "A property campaign built for attention and foot traffic. Short-form teasers, geo-targeted posting, and open-house momentum.",
-    bullets: [
-      "50,000+ impressions in 30 days", 
-      "15+ attendee open house", 
-      "Local influencer marketing"
-    ],
+    bullets: ["50,000+ impressions in 30 days", "15+ attendee open house", "Local influencer marketing"],
     proofIdeas: ["Ads manager stats", "Open-house photos", "Reel tiles"],
     cta: "Discuss social media marketing or aerial drone services",
   },
@@ -115,9 +111,9 @@ const CASES = {
     summary:
       "Developed a full-scale content system that transformed Arizona realtors' quiet channel into a recognizable local brand, driving consistent audience growth and lead generation.",
     bullets: [
-      "Over a quarter-million views from thousands of subscribers", 
-      "Professional videography of million dollar homes", 
-      "Set content standards with dramatic before / after"
+      "Over a quarter-million views from thousands of subscribers",
+      "Professional videography of million dollar homes",
+      "Set content standards with dramatic before / after",
     ],
     proofIdeas: ["YT analytics", "Before/after tiles"],
     cta: "Discuss growing on YouTube and content creation",
@@ -196,6 +192,7 @@ type EmbedProps = { content?: string; title?: string; tall?: boolean };
 function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) {
   if (!content) return null;
   const isTikTok = content.startsWith("TIKTOK:");
+  theconst: any = null;
   const isIG = content.startsWith("INSTAGRAM:");
   const isYT = content.startsWith("YOUTUBE:");
   const isVimeo = content.startsWith("VIMEO:");
@@ -358,7 +355,13 @@ function Nav() {
   );
 }
 
+/** HERO — mobile order: headline → image → tagline → CTA; widow fixes applied */
 function Hero() {
+  // helper strings with non-breaking spaces to avoid widows
+  const headline = "Results You Can Measure. Stories People\u00A0Remember.";
+  const taglinePrefix = "A digital marketing & content studio ";
+  const byGilles = "by\u00A0Gilles\u00A0Elliott";
+
   return (
     <section id="hero" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50">
       {/* Skip link for a11y */}
@@ -370,9 +373,18 @@ function Hero() {
       </a>
 
       <div className="mx-auto max-w-6xl px-4">
-        {/* Mobile Layout */}
+        {/* --- Mobile layout (requested order) --- */}
         <div className="md:hidden">
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] mb-8">
+          {/* 1) Headline */}
+          <h1
+            className="text-4xl font-semibold tracking-tight text-zinc-900"
+            style={{ textWrap: "balance" as any }}
+          >
+            {headline}
+          </h1>
+
+          {/* 2) Full-width image */}
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] my-8">
             <img
               className="h-full w-full object-cover"
               src={HERO_SRC}
@@ -382,29 +394,43 @@ function Hero() {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
           </div>
-          <div>
-            <h1 className="text-4xl font-semibold tracking-tight text-zinc-900">
-              Results You Can Measure. Stories People Remember.
-            </h1>
-            <p className="mt-5 text-zinc-800 text-lg font-medium">A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.</p>
-            <div className="mt-6">
-              <a
-                href="#contact"
-                className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm text-sm"
-              >
-                Get a FREE Digital Growth Plan
-              </a>
-            </div>
+
+          {/* 3) Tagline */}
+          <p
+            className="text-zinc-800 text-lg font-medium"
+            style={{ textWrap: "balance" as any }}
+          >
+            {taglinePrefix}
+            <span className="font-bold">{byGilles}</span>.
+          </p>
+
+          {/* 4) CTA */}
+          <div className="mt-6">
+            <a
+              href="#contact"
+              className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm text-sm"
+            >
+              Get a FREE Digital Growth Plan
+            </a>
           </div>
         </div>
 
-        {/* Desktop Layout */}
+        {/* --- Desktop layout (split view + widow fixes) --- */}
         <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
-              Results You Can Measure. Stories People Remember.
+            <h1
+              className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900"
+              style={{ textWrap: "balance" as any }}
+            >
+              {headline}
             </h1>
-            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.</p>
+            <p
+              className="mt-5 text-zinc-800 text-lg md:text-xl font-medium"
+              style={{ textWrap: "balance" as any }}
+            >
+              {taglinePrefix}
+              <span className="font-bold">{byGilles}</span>.
+            </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="#contact"
@@ -414,6 +440,7 @@ function Hero() {
               </a>
             </div>
           </div>
+
           <div className="relative aspect-[4/3] md:aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
             <img
               className="h-full w-full object-cover"
@@ -719,7 +746,7 @@ export default function VueDigitalPortfolioPage() {
             aria-label="Follow Vue Digital on Instagram"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fillRule="evenodd" d="M12.017 0C8.396 0 7.929.01 6.71.048 5.493.087 4.73.222 4.058.42a5.916 5.916 0 0 0-2.134 1.404A5.916 5.916 0 0 0 .42 4.058C.222 4.73.087 5.493.048 6.71.01 7.929 0 8.396 0 12.017s.01 4.087.048 5.306c.039 1.217.174 1.98.372 2.652a5.916 5.916 0 0 0 1.404 2.134 5.916 5.916 0 0 0 2.134 1.404c.672.198 1.435.333 2.652.372 1.219.038 1.686.048 5.306.048s4.087-.01 5.306-.048c1.217-.039 1.98-.174 2.652-.372a5.916 5.916 0 0 0 2.134-1.404 5.916 5.916 0 0 0 1.404-2.134c.198-.672.333-1.435.372-2.652.038-1.219.048-1.686.048-5.306s-.01-4.087-.048-5.306c-.039-1.217-.174-1.98-.372-2.652a5.916 5.916 0 0 0-1.404-2.134A5.916 5.916 0 0 0 19.942.42c-.672-.198-1.435-.333-2.652-.372C16.071.01 15.604 0 12.017 0zm0 2.161c3.547 0 3.967.01 5.364.048 1.295.059 1.998.27 2.467.448.62.24 1.063.528 1.528.992.464.465.752.908.992 1.528.178.469.389 1.172.448 2.467.038 1.397.048 1.817.048 5.364s-.01 3.967-.048 5.364c-.059 1.295-.27 1.998-.448 2.467a4.11 4.11 0 0 1-.992 1.528 4.11 4.11 0 0 1-1.528.992c-.469.178-1.172.389-2.467.448-1.397.038-1.817.048-5.364.048s-3.967-.01-5.364-.048c-1.295-.059-1.998-.27-2.467-.448a4.11 4.11 0 0 1-1.528-.992 4.11 4.11 0 0 1-.992-1.528c-.178-.469-.389-1.172-.448-2.467-.038-1.397-.048-1.817-.048-5.364s.01-3.967.048-5.364c.059-1.295.27-1.998.448-2.467.24-.62.528-1.063.992-1.528a4.11 4.11 0 0 1 1.528-.992c.469-.178 1.172-.389 2.467-.448 1.397-.038 1.817-.048 5.364-.048z"/>
+              <path fillRule="evenodd" d="M12.017 0C8.396 0 7.929.01 6.71.048 5.493.087 4.73.222 4.058.42a5.916 5.916 0 0 0-2.134 1.404A5.916 5.916 0 0 0 .42 4.058C.222 4.73.087 5.493.048 6.71.01 7.929 0 8.396 0 12.017s.01 4.087.048 5.306c.039 1.217.174 1.98.372 2.652a5.916 5.916 0 0 0 1.404 2.134 5.916 5.916 0 0 0 2.134 1.404c.672.198 1.435.333 2.652.372 1.219.038 1.686.048 5.306.048s4.087-.01 5.306-.048c1.217-.039 1.98-.174 2.652-.372a5.916 5.916 0 0 0 2.134-1.404 5.916 5.916 0 0 0 1.404-2.134c.198-.672.333-1.435.372-2.652.038-1.219.048-1.686.048-5.306s-.01-3.967-.048-5.306c-.059-1.295-.27-1.998-.448-2.467a4.11 4.11 0 0 1-.992-1.528 4.11 4.11 0 0 1-1.528-.992c-.469-.178-1.172-.389-2.467-.448-1.397-.038-1.817-.048-5.364-.048z"/>
               <path fillRule="evenodd" d="M12.017 5.835a6.182 6.182 0 1 0 0 12.365 6.182 6.182 0 0 0 0-12.365zm0 10.203a4.021 4.021 0 1 1 0-8.042 4.021 4.021 0 0 1 0 8.042zm7.846-10.405a1.441 1.441 0 0 1-2.883 0 1.441 1.441 0 0 1 2.883 0z"/>
             </svg>
           </a>
