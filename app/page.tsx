@@ -268,7 +268,7 @@ function Nav() {
             alt="Vue Digital logo"
             width={400}
             height={94}
-            className="h-18 md:h-24 w-auto object-contain"
+            className="h-12 md:h-24 w-auto object-contain"
             loading="eager"
             decoding="async"
           />
