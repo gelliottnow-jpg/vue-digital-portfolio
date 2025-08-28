@@ -242,9 +242,9 @@ function Nav() {
           <img
             src="/logo.png"
             alt="Vue Digital logo"
-            width={120}
-            height={28}
-            className="h-7 w-auto object-contain"
+            width={240}
+            height={56}
+            className="h-14 w-auto object-contain"
             loading="eager"
             decoding="async"
           />
@@ -354,7 +354,7 @@ function Hero() {
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href="#contact"
-              className="inline-flex h-11 items-center rounded-full bg-zinc-900 px-6 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
+              className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm"
             >
               Get a FREE Digital Growth Plan for Your Business
             </a>
