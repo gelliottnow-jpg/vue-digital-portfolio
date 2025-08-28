@@ -354,33 +354,20 @@ function Nav() {
   );
 }
 
-/** HERO — mobile order: headline → image → tagline → CTA; widow fixes via NBSP */
 function Hero() {
-  // helper strings with non-breaking spaces to avoid widows
-  const headline = "Results You Can Measure. Stories People\u00A0Remember.";
-  const taglinePrefix = "A digital marketing & content studio ";
-  const byGilles = "by\u00A0Gilles\u00A0Elliott";
-
   return (
-    <section id="hero" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50">
-      {/* Skip link for a11y */}
-      <a
-        href="#work"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
-      >
-        Skip to Work
-      </a>
-
+    <section
+      id="hero"
+      className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50"
+    >
       <div className="mx-auto max-w-6xl px-4">
-        {/* --- Mobile layout (requested order) --- */}
-        <div className="md:hidden">
-          {/* 1) Headline */}
-          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900">
-            {headline}
+        {/* Mobile layout */}
+        <div className="md:hidden text-center">
+          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 leading-tight max-w-[18ch] mx-auto">
+            Results You Can Measure. Stories People Remember.
           </h1>
 
-          {/* 2) Full-width image */}
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] my-8">
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] my-6">
             <img
               className="h-full w-full object-cover"
               src={HERO_SRC}
@@ -391,13 +378,10 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
           </div>
 
-          {/* 3) Tagline */}
-          <p className="text-zinc-800 text-lg font-medium">
-            {taglinePrefix}
-            <span className="font-bold">{byGilles}</span>.
+          <p className="text-zinc-800 text-lg font-medium leading-snug">
+            A digital marketing & content studio{" "}
+            <span className="font-bold">by Gilles Elliott</span>.
           </p>
-
-          {/* 4) CTA */}
           <div className="mt-6">
             <a
               href="#contact"
@@ -408,17 +392,17 @@ function Hero() {
           </div>
         </div>
 
-        {/* --- Desktop layout (split view + widow fixes) --- */}
+        {/* Desktop layout */}
         <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
-              {headline}
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-zinc-900 leading-tight max-w-[18ch]">
+              Results You Can Measure. Stories People Remember.
             </h1>
-            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">
-              {taglinePrefix}
-              <span className="font-bold">{byGilles}</span>.
+            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium leading-snug">
+              A digital marketing & content studio{" "}
+              <span className="font-bold">by Gilles Elliott</span>.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6">
               <a
                 href="#contact"
                 className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm"
@@ -427,7 +411,6 @@ function Hero() {
               </a>
             </div>
           </div>
-
           <div className="relative aspect-[4/3] md:aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
             <img
               className="h-full w-full object-cover"
@@ -442,6 +425,8 @@ function Hero() {
       </div>
     </section>
   );
+}
+
 }
 
 function Highlights() {
