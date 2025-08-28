@@ -369,30 +369,61 @@ function Hero() {
         Skip to Work
       </a>
 
-      <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
-            Results You Can Measure. Stories People Remember.
-          </h1>
-          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.</p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href="#contact"
-              className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm"
-            >
-              Get a FREE Digital Growth Plan for Your Business
-            </a>
+      <div className="mx-auto max-w-6xl px-4">
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] mb-8">
+            <img
+              className="h-full w-full object-cover"
+              src={HERO_SRC}
+              alt="Selected client work montage"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
+          </div>
+          <div>
+            <h1 className="text-4xl font-semibold tracking-tight text-zinc-900">
+              Results You Can Measure. Stories People Remember.
+            </h1>
+            <p className="mt-5 text-zinc-800 text-lg font-medium">A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.</p>
+            <div className="mt-6">
+              <a
+                href="#contact"
+                className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm text-sm"
+              >
+                Get a FREE Digital Growth Plan
+              </a>
+            </div>
           </div>
         </div>
-        <div className="relative aspect-[4/3] md:aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
-          <img
-            className="h-full w-full object-cover"
-            src={HERO_SRC}
-            alt="Selected client work montage"
-            loading="eager"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
+
+        {/* Desktop Layout */}
+        <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
+              Results You Can Measure. Stories People Remember.
+            </h1>
+            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="#contact"
+                className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm"
+              >
+                Get a FREE Digital Growth Plan for Your Business
+              </a>
+            </div>
+          </div>
+          <div className="relative aspect-[4/3] md:aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
+            <img
+              className="h-full w-full object-cover"
+              src={HERO_SRC}
+              alt="Selected client work montage"
+              loading="eager"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
+          </div>
         </div>
       </div>
     </section>
