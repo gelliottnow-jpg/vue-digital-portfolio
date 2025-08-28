@@ -92,11 +92,7 @@ const CASES = {
   ssb: {
     summary:
       "Spectacle + credibility for a niche community: organic + paid video distribution and creator collabs.",
-    bullets: [
-      "100+ new program memberships",
-      "1.5M+ impressions from two videos",
-      "Videos scripted and produced on behalf of client's social pages",
-    ],
+    bullets: ["100+ new program memberships", "1.5M+ impressions from two videos", "Videos scripted and produced on behalf of client's social pages"],
     proofIdeas: ["Launch video stills", "Order notifications (redacted)", "Comments"],
     cta: "Discuss growing your social media",
   },
@@ -110,11 +106,7 @@ const CASES = {
   mojo: {
     summary:
       "Developed a full-scale content system that transformed Arizona realtors' quiet channel into a recognizable local brand, driving consistent audience growth and lead generation.",
-    bullets: [
-      "Over a quarter-million views from thousands of subscribers",
-      "Professional videography of million dollar homes",
-      "Set content standards with dramatic before / after",
-    ],
+    bullets: ["Over a quarter-million views from thousands of subscribers", "Professional videography of million dollar homes", "Set content standards with dramatic before / after"],
     proofIdeas: ["YT analytics", "Before/after tiles"],
     cta: "Discuss growing on YouTube and content creation",
   },
@@ -355,19 +347,29 @@ function Nav() {
 }
 
 function Hero() {
+  // Use NBSP once to prevent a widow on the last word pair.
+  const HEADLINE = "Results You Can Measure. Stories People\u00A0Remember.";
+
   return (
-    <section
-      id="hero"
-      className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50"
-    >
+    <section id="hero" className="pt-28 md:pt-32 pb-16 md:pb-24 bg-gradient-to-b from-white to-zinc-50">
+      {/* Skip link for a11y */}
+      <a
+        href="#work"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-3 focus:py-2 focus:rounded"
+      >
+        Skip to Work
+      </a>
+
       <div className="mx-auto max-w-6xl px-4">
-        {/* Mobile layout */}
-        <div className="md:hidden text-center">
-          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 leading-tight max-w-[18ch] mx-auto">
-            Results You Can Measure. Stories People Remember.
+        {/* Mobile: headline → image → tagline → CTA */}
+        <div className="md:hidden">
+          {/* 1) Headline */}
+          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 leading-[1.08] [text-wrap:balance] max-w-[22ch]">
+            {HEADLINE}
           </h1>
 
-          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] my-6">
+          {/* 2) Full-width image */}
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)] my-8">
             <img
               className="h-full w-full object-cover"
               src={HERO_SRC}
@@ -378,10 +380,12 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-black/10" />
           </div>
 
-          <p className="text-zinc-800 text-lg font-medium leading-snug">
-            A digital marketing & content studio{" "}
-            <span className="font-bold">by Gilles Elliott</span>.
+          {/* 3) Tagline */}
+          <p className="text-zinc-800 text-lg font-medium [text-wrap:balance]">
+            A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.
           </p>
+
+          {/* 4) CTA */}
           <div className="mt-6">
             <a
               href="#contact"
@@ -392,17 +396,16 @@ function Hero() {
           </div>
         </div>
 
-        {/* Desktop layout */}
+        {/* Desktop: split grid, but keep same reading order on the left */}
         <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-zinc-900 leading-tight max-w-[18ch]">
-              Results You Can Measure. Stories People Remember.
+            <h1 className="text-5xl md:text-6xl font-semibold tracking-tight text-zinc-900 leading-[1.06] [text-wrap:balance] max-w-[24ch]">
+              {HEADLINE}
             </h1>
-            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium leading-snug">
-              A digital marketing & content studio{" "}
-              <span className="font-bold">by Gilles Elliott</span>.
+            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium [text-wrap:balance]">
+              A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="#contact"
                 className="inline-flex h-11 items-center rounded-full border border-zinc-300 bg-white px-6 hover:bg-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 shadow-sm"
@@ -411,7 +414,8 @@ function Hero() {
               </a>
             </div>
           </div>
-          <div className="relative aspect-[4/3] md:aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
+
+          <div className="relative aspect-[5/4] rounded-3xl overflow-hidden shadow-[0_10px_40px_-20px_rgba(0,0,0,0.35)]">
             <img
               className="h-full w-full object-cover"
               src={HERO_SRC}
@@ -425,8 +429,6 @@ function Hero() {
       </div>
     </section>
   );
-}
-
 }
 
 function Highlights() {
@@ -523,11 +525,7 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
               }`}
             >
               {PROOF_IMAGES[id]?.map((content, index) => (
-                <Embed
-                  key={index}
-                  content={content}
-                  title={c.proofIdeas?.[index] || `Proof ${index + 1}`}
-                />
+                <Embed key={index} content={content} title={c.proofIdeas?.[index] || `Proof ${index + 1}`} />
               ))}
             </div>
           )}
@@ -686,7 +684,9 @@ function DevTests() {
           </li>
         ))}
       </ul>
-      <div className="mt-2 text-xs opacity-70">Append <code>?dev=1</code> to the URL to toggle this.</div>
+      <div className="mt-2 text-xs opacity-70">
+        Append <code>?dev=1</code> to the URL to toggle this.
+      </div>
     </div>
   );
 }
@@ -718,7 +718,7 @@ export default function VueDigitalPortfolioPage() {
             aria-label="Follow Vue Digital on Instagram"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fillRule="evenodd" d="M12.017 0C8.396 0 7.929.01 6.71.048 5.493.087 4.73.222 4.058.42a5.916 5.916 0 0 0-2.134 1.404A5.916 5.916 0 0 0 .42 4.058C.222 4.73.087 5.493.048 6.71.01 7.929 0 8.396 0 12.017s.01 4.087.048 5.306c.039 1.217.174 1.98.372 2.652a5.916 5.916 0 0 0 1.404 2.134 5.916 5.916 0 0 0 2.134 1.404c.672.198 1.435.333 2.652.372 1.219.038 1.686.048 5.306.048s4.087-.01 5.306-.048c1.217-.039 1.98-.174 2.652-.372a5.916 5.916 0 0 0 2.134-1.404 5.916 5.916 0 0 0 1.404-2.134c.198-.672.333-1.435.372-2.652.038-1.219.048-1.686.048-5.306s-.01-3.967-.048-5.306c-.059-1.295-.27-1.998-.448-2.467a4.11 4.11 0 0 1-.992-1.528 4.11 4.11 0 0 1-1.528-.992c-.469-.178-1.172-.389-2.467-.448 1.397-.038 1.817-.048 5.364-.048z"/>
+              <path fillRule="evenodd" d="M12.017 0C8.396 0 7.929.01 6.71.048 5.493.087 4.73.222 4.058.42a5.916 5.916 0 0 0-2.134 1.404A5.916 5.916 0 0 0 .42 4.058C.222 4.73.087 5.493.048 6.71.01 7.929 0 8.396 0 12.017s.01 4.087.048 5.306c.039 1.217.174 1.98.372 2.652a5.916 5.916 0 0 0 1.404 2.134 5.916 5.916 0 0 0 2.134 1.404c.672.198 1.435.333 2.652.372 1.219.038 1.686.048 5.306.048s4.087-.01 5.306-.048c1.217-.039 1.98-.174 2.652-.372a5.916 5.916 0 0 0 2.134-1.404 5.916 5.916 0 0 0 1.404-2.134c.198-.672.333-1.435.372-2.652.038-1.219.048-1.686.048-5.306s-.01-4.087-.048-5.306c-.039-1.217-.174-1.98-.372-2.652a5.916 5.916 0 0 0-1.404-2.134A5.916 5.916 0 0 0 19.942.42c-.672-.198-1.435-.333-2.652-.372C16.071.01 15.604 0 12.017 0zm0 2.161c3.547 0 3.967.01 5.364.048 1.295.059 1.998.27 2.467.448.62.24 1.063.528 1.528.992.464.465.752.908.992 1.528.178.469.389 1.172.448 2.467.038 1.397.048 1.817.048 5.364s-.01 3.967-.048 5.364c-.059 1.295-.27 1.998-.448 2.467a4.11 4.11 0 0 1-.992 1.528 4.11 4.11 0 0 1-1.528.992c-.469.178-1.172.389-2.467.448-1.397.038-1.817.048-5.364.048s-3.967-.01-5.364-.048c-1.295-.059-1.998-.27-2.467-.448a4.11 4.11 0 0 1-1.528-.992 4.11 4.11 0 0 1-.992-1.528c-.178-.469-.389-1.172-.448-2.467-.038-1.397-.048-1.817-.048-5.364s.01-3.967.048-5.364c.059-1.295.27-1.998.448-2.467.24-.62.528-1.063.992-1.528a4.11 4.11 0 0 1 1.528-.992c.469-.178 1.172-.389 2.467-.448 1.397-.038 1.817-.048 5.364-.048z"/>
               <path fillRule="evenodd" d="M12.017 5.835a6.182 6.182 0 1 0 0 12.365 6.182 6.182 0 0 0 0-12.365zm0 10.203a4.021 4.021 0 1 1 0-8.042 4.021 4.021 0 0 1 0 8.042zm7.846-10.405a1.441 1.441 0 0 1-2.883 0 1.441 1.441 0 0 1 2.883 0z"/>
             </svg>
           </a>
