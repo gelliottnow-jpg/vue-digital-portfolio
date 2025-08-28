@@ -150,9 +150,11 @@ const PROOF_IMAGES: Record<string, string[]> = {
     "YOUTUBE:https://www.youtube.com/embed/w7K2bJW1kMY",
     "YOUTUBE:https://www.youtube.com/embed/dZI6A7-DpEo",
   ],
-  bubble: [
-    "IMG:https://www.dropbox.com/scl/fi/pupbzhpn1d9zj22jx9jse/HeroImage-9.png?rlkey=j7zdtkwtorlo9hh0cav9bqjdp&st=fumgegul&raw=1",
-  ],
+ bubble: [
+  "INSTAGRAM:https://www.instagram.com/p/C-YT4gLNNID/embed",
+  "INSTAGRAM:https://www.instagram.com/reel/C-GOkmgoHCP/embed", 
+  "INSTAGRAM:https://www.instagram.com/reel/C900qezoBT8/embed",
+],
 };
 
 // Utility hook
