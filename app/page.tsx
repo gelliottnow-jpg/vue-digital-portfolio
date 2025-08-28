@@ -275,12 +275,6 @@ function Nav() {
           >
             Work with Gilles
           </a>
-          <a
-            href="#contact"
-            className="inline-flex h-10 items-center rounded-full border border-zinc-300 px-5 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
-          >
-            Free Digital Opportunity Assessment
-          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -332,13 +326,6 @@ function Nav() {
               >
                 Work with Gilles
               </a>
-              <a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
-                className="rounded-xl border border-zinc-300 px-4 py-3 text-center hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
-              >
-                Free Digital Opportunity Assessment
-              </a>
             </div>
           </div>
         </div>
@@ -363,19 +350,13 @@ function Hero() {
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
             Results You Can Measure. Stories People Remember.
           </h1>
-          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio.</p>
+          <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">A digital marketing & content studio <span className="font-bold">by Gilles Elliott</span>.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href="#contact"
               className="inline-flex h-11 items-center rounded-full bg-zinc-900 px-6 text-white hover:bg-zinc-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
             >
-              Work with Gilles
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex h-11 items-center rounded-full border border-zinc-300 px-6 hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900"
-            >
-              Free Digital Opportunity Assessment
+              Get a FREE Digital Growth Plan for Your Business
             </a>
           </div>
         </div>
