@@ -175,8 +175,7 @@ const PROOF_IMAGES: Record<string, string[]> = {
   ],
   bubble: [
     "INSTAGRAM:https://www.instagram.com/p/C-YT4gLNNID/embed",
-    "INSTAGRAM:https://www.instagram.com/reel/C-GOkmgoHCP/embed", 
-    "INSTAGRAM:https://www.instagram.com/reel/C900qezoBT8/embed",
+    "INSTAGRAM:https://www.instagram.com/reel/C-GOkmgoHCP/embed",
   ],
 };
 
@@ -538,9 +537,9 @@ function Contact() {
   return (
     <section id="contact" className="py-16 md:py-24 bg-zinc-50">
       <div className="mx-auto max-w-3xl px-4 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900">Let's make your brand unskippable.</h2>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-zinc-900">Get a free digital growth guide customized for your business</h2>
         <p className="mt-3 text-zinc-600">
-          Email <a className="underline" href="mailto:gelliottnow@gmail.com">gelliottnow@gmail.com</a> or send a quick brief below.
+          Email <a className="underline" href="mailto:gelliottnow@gmail.com">gelliottnow@gmail.com</a> or fill out the form below to be contacted.
         </p>
         <div className="mt-8 grid gap-3 text-left">
           <div>
