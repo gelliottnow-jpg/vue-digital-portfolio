@@ -192,7 +192,6 @@ type EmbedProps = { content?: string; title?: string; tall?: boolean };
 function Embed({ content, title = "Embedded media", tall = false }: EmbedProps) {
   if (!content) return null;
   const isTikTok = content.startsWith("TIKTOK:");
-  theconst: any = null;
   const isIG = content.startsWith("INSTAGRAM:");
   const isYT = content.startsWith("YOUTUBE:");
   const isVimeo = content.startsWith("VIMEO:");
@@ -355,7 +354,7 @@ function Nav() {
   );
 }
 
-/** HERO — mobile order: headline → image → tagline → CTA; widow fixes applied */
+/** HERO — mobile order: headline → image → tagline → CTA; widow fixes via NBSP */
 function Hero() {
   // helper strings with non-breaking spaces to avoid widows
   const headline = "Results You Can Measure. Stories People\u00A0Remember.";
@@ -376,10 +375,7 @@ function Hero() {
         {/* --- Mobile layout (requested order) --- */}
         <div className="md:hidden">
           {/* 1) Headline */}
-          <h1
-            className="text-4xl font-semibold tracking-tight text-zinc-900"
-            style={{ textWrap: "balance" as any }}
-          >
+          <h1 className="text-4xl font-semibold tracking-tight text-zinc-900">
             {headline}
           </h1>
 
@@ -396,10 +392,7 @@ function Hero() {
           </div>
 
           {/* 3) Tagline */}
-          <p
-            className="text-zinc-800 text-lg font-medium"
-            style={{ textWrap: "balance" as any }}
-          >
+          <p className="text-zinc-800 text-lg font-medium">
             {taglinePrefix}
             <span className="font-bold">{byGilles}</span>.
           </p>
@@ -418,16 +411,10 @@ function Hero() {
         {/* --- Desktop layout (split view + widow fixes) --- */}
         <div className="hidden md:grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <h1
-              className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900"
-              style={{ textWrap: "balance" as any }}
-            >
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-zinc-900">
               {headline}
             </h1>
-            <p
-              className="mt-5 text-zinc-800 text-lg md:text-xl font-medium"
-              style={{ textWrap: "balance" as any }}
-            >
+            <p className="mt-5 text-zinc-800 text-lg md:text-xl font-medium">
               {taglinePrefix}
               <span className="font-bold">{byGilles}</span>.
             </p>
@@ -746,7 +733,7 @@ export default function VueDigitalPortfolioPage() {
             aria-label="Follow Vue Digital on Instagram"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path fillRule="evenodd" d="M12.017 0C8.396 0 7.929.01 6.71.048 5.493.087 4.73.222 4.058.42a5.916 5.916 0 0 0-2.134 1.404A5.916 5.916 0 0 0 .42 4.058C.222 4.73.087 5.493.048 6.71.01 7.929 0 8.396 0 12.017s.01 4.087.048 5.306c.039 1.217.174 1.98.372 2.652a5.916 5.916 0 0 0 1.404 2.134 5.916 5.916 0 0 0 2.134 1.404c.672.198 1.435.333 2.652.372 1.219.038 1.686.048 5.306.048s4.087-.01 5.306-.048c1.217-.039 1.98-.174 2.652-.372a5.916 5.916 0 0 0 2.134-1.404 5.916 5.916 0 0 0 1.404-2.134c.198-.672.333-1.435.372-2.652.038-1.219.048-1.686.048-5.306s-.01-3.967-.048-5.306c-.059-1.295-.27-1.998-.448-2.467a4.11 4.11 0 0 1-.992-1.528 4.11 4.11 0 0 1-1.528-.992c-.469-.178-1.172-.389-2.467-.448-1.397-.038-1.817-.048-5.364-.048z"/>
+              <path fillRule="evenodd" d="M12.017 0C8.396 0 7.929.01 6.71.048 5.493.087 4.73.222 4.058.42a5.916 5.916 0 0 0-2.134 1.404A5.916 5.916 0 0 0 .42 4.058C.222 4.73.087 5.493.048 6.71.01 7.929 0 8.396 0 12.017s.01 4.087.048 5.306c.039 1.217.174 1.98.372 2.652a5.916 5.916 0 0 0 1.404 2.134 5.916 5.916 0 0 0 2.134 1.404c.672.198 1.435.333 2.652.372 1.219.038 1.686.048 5.306.048s4.087-.01 5.306-.048c1.217-.039 1.98-.174 2.652-.372a5.916 5.916 0 0 0 2.134-1.404 5.916 5.916 0 0 0 1.404-2.134c.198-.672.333-1.435.372-2.652.038-1.219.048-1.686.048-5.306s-.01-3.967-.048-5.306c-.059-1.295-.27-1.998-.448-2.467a4.11 4.11 0 0 1-.992-1.528 4.11 4.11 0 0 1-1.528-.992c-.469-.178-1.172-.389-2.467-.448 1.397-.038 1.817-.048 5.364-.048z"/>
               <path fillRule="evenodd" d="M12.017 5.835a6.182 6.182 0 1 0 0 12.365 6.182 6.182 0 0 0 0-12.365zm0 10.203a4.021 4.021 0 1 1 0-8.042 4.021 4.021 0 0 1 0 8.042zm7.846-10.405a1.441 1.441 0 0 1-2.883 0 1.441 1.441 0 0 1 2.883 0z"/>
             </svg>
           </a>
