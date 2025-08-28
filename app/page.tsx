@@ -242,9 +242,9 @@ function Nav() {
           <img
             src="/logo.png"
             alt="Vue Digital logo"
-            width={320}
-            height={75}
-            className="h-16 md:h-18 w-auto object-contain"
+            width={400}
+            height={94}
+            className="h-18 md:h-24 w-auto object-contain"
             loading="eager"
             decoding="async"
           />
