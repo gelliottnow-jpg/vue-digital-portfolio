@@ -455,7 +455,7 @@ function CaseSection({ id, title, kpi }: { id: string; title: string; kpi?: stri
                 </li>
               ))}
             </ul>
-            <a href="#contact" className="mt-6 inline-flex text-zinc-900 hover:underline">
+            <a href="#contact" className="mt-6 inline-flex text-zinc-900 underline hover:no-underline">
               {c.cta} →
             </a>
           </div>
