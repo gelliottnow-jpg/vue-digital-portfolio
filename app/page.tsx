@@ -29,7 +29,7 @@ const HIGHLIGHTS = [
   },
   {
     title: "Autohaus of Naples",
-    kpi: "High-end consignment ads $30 per lead, Relaunched YouTube channel 100K views in 30 days",
+    kpi: "High-end consignment ads $25 per lead, Relaunched Social Media channels 505K views in 30 days",
     img: "https://www.dropbox.com/scl/fi/xp0ioarkdq16cf1o4d8bf/autohaus.png?rlkey=5mtn4vkxnmnqce11q98c3nn70&st=xbrvww8k&raw=1",
     anchor: "autohaus",
   },
@@ -83,7 +83,7 @@ const CASES = {
       "Complete social media relaunch across YouTube, Facebook, and Instagram for a once-viral luxury automotive brand. Drove rapid engagement and lead generation within the first 30 days.",
     bullets: [
       "$30 cost per lead via Facebook Ads",
-      "100K views first month up 35% from prev. month",
+      "500K views first month up 150% from prev. month",
       "All video content captured on-site and produced by Vue Digital on behalf of client",
     ],
     proofIdeas: ["Before/after analytics", "Thumbnail grid evolution", "Shorts montage stills"],
